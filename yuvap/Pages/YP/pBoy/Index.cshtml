@@ -1,0 +1,102 @@
+@page
+@model yuvap.Pages.YP.pBoy.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Male Index</h3>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Reg-No
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boy[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boy[0].MobileNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boy[0].Pref1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boy[0].Pref2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boy[0].Pref3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boy[0].Pref4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boy[0].Pref5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boy[0].Pref6)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boy[0].Pref7)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Boy[0].Pref8)
+            </th>
+            <th>
+                Boy Liked By:
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Boy) {
+        <tr>
+            <td>
+               @Html.DisplayFor(modelItem => item.BoyID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pref1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pref2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pref3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pref4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pref5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pref6)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pref7)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pref8)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoyLikedByConcat)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.BoyID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.BoyID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.BoyID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

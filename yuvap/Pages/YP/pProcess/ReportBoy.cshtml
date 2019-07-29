@@ -1,0 +1,44 @@
+@page 
+@model yuvap.Pages.YP.pProcess.ReportBoyModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Male Report</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Boy[0].BoyID)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.Boy[0].Name)
+            </th>
+            <th>
+                Interested Girls:
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Boy) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoyID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoyLikedByConcat)
+            </td>            
+        </tr>
+}
+    </tbody>
+</table>
+<br/>
+
+
+               

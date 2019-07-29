@@ -1,0 +1,86 @@
+@page
+@model yuvap.Pages.YP.pProcess.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Boy</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Boy.BoyID" class="control-label"></label>
+                <input asp-for="Boy.BoyID" class="form-control" />
+                <span asp-validation-for="Boy.BoyID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boy.Name" class="control-label"></label>
+                <input asp-for="Boy.Name" class="form-control" />
+                <span asp-validation-for="Boy.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boy.MobileNum" class="control-label"></label>
+                <input asp-for="Boy.MobileNum" class="form-control" />
+                <span asp-validation-for="Boy.MobileNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boy.Pref1" class="control-label"></label>
+                <input asp-for="Boy.Pref1" class="form-control" />
+                <span asp-validation-for="Boy.Pref1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boy.Pref2" class="control-label"></label>
+                <input asp-for="Boy.Pref2" class="form-control" />
+                <span asp-validation-for="Boy.Pref2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boy.Pref3" class="control-label"></label>
+                <input asp-for="Boy.Pref3" class="form-control" />
+                <span asp-validation-for="Boy.Pref3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boy.Pref4" class="control-label"></label>
+                <input asp-for="Boy.Pref4" class="form-control" />
+                <span asp-validation-for="Boy.Pref4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boy.Pref5" class="control-label"></label>
+                <input asp-for="Boy.Pref5" class="form-control" />
+                <span asp-validation-for="Boy.Pref5" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boy.Pref6" class="control-label"></label>
+                <input asp-for="Boy.Pref6" class="form-control" />
+                <span asp-validation-for="Boy.Pref6" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boy.Pref7" class="control-label"></label>
+                <input asp-for="Boy.Pref7" class="form-control" />
+                <span asp-validation-for="Boy.Pref7" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boy.Pref8" class="control-label"></label>
+                <input asp-for="Boy.Pref8" class="form-control" />
+                <span asp-validation-for="Boy.Pref8" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boy.BoyLikedByConcat" class="control-label"></label>
+                <input asp-for="Boy.BoyLikedByConcat" class="form-control" />
+                <span asp-validation-for="Boy.BoyLikedByConcat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+

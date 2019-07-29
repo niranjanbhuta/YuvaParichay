@@ -1,0 +1,28 @@
+@page
+@model yuvap.Pages.YP.pProcess.AdminModel
+
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<h1>Admin</h1>
+
+<h4>Menu</h4>
+<body> 
+               
+			<li><a asp-page="/YP/pBoy/Index">Male-List/Create/Edit</a></li>
+			<li><a asp-page="/YP/pGirl/Index">Fmale-List/Create/Edit</a></li>
+            <li><a asp-page="/YP/pProcess/ProcessBoy">Male Data Process</a></li>              
+			<li><a asp-page="/YP/pProcess/ProcessGirl">Female Data Process</a></li>              
+			<li><a asp-page="/YP/pProcess/ReportBoy">Male-Report</a></li>
+			<li><a asp-page="/YP/pProcess/ReportGirl">Female-Report</a></li>
+			<p></p>
+			 			<h3>Warning!!!</h3> 
+			<p>Please Be Carefull Not to Delete Actual Data</p>
+			 <p>Think Twice Before Deleting.</p>
+			<li><a asp-page="/YP/pProcess/DeleteAll"  onclick = "return confirm('Are you sure you wish to delete all data ?'); " >Delete All Male and Female Data Before Actual Data is Entered.</a></li>                  
+			
+			
+
+
+</body>
