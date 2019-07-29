@@ -1,0 +1,20 @@
+@page
+@model yuvap.Pages.YP.pProcess.AdminModel
+
+@{
+    ViewData["Title"] = "Admin";
+}
+
+<h1>Admin</h1>
+
+<h4>Menu</h4>
+<body> 
+               
+			<li><a asp-page="/YP/pBoy/Index">Male-List/Create/Edit</a></li>
+			<li><a asp-page="/YP/pGirl/Index">Fmale-List/Create/Edit</a></li>
+            <li><a asp-page="/YP/pProcess/ProcessBoy">Male Data Process</a></li>              
+			<li><a asp-page="/YP/pProcess/ProcessGirl">Female Data Process</a></li>              
+			<li><a asp-page="/YP/pProcess/ReportBoy">Male-Report</a></li>
+			<li><a asp-page="/YP/pProcess/ReportGirl">Female-Report</a></li>                  
+  
+</body>
