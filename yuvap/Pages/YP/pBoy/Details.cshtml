@@ -1,0 +1,85 @@
+@page
+@model yuvap.Pages.YP.pBoy.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Boy</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.MobileNum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.MobileNum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref3)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref3)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref4)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref4)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref5)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref5)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref6)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref6)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref7)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref7)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref8)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref8)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.BoyLikedByConcat)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.BoyLikedByConcat)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Boy.BoyID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

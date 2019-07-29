@@ -1,0 +1,88 @@
+@page
+@model yuvap.Pages.YP.pProcess.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Boy</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.MobileNum)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.MobileNum)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref3)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref3)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref4)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref4)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref5)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref5)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref6)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref6)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref7)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref7)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.Pref8)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.Pref8)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Boy.BoyLikedByConcat)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Boy.BoyLikedByConcat)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Boy.BoyID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
