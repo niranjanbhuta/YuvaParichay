@@ -1,0 +1,42 @@
+@page
+@model yuvap.Pages.YP.pGirlLikes.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GirlLikes[0].Girls)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GirlLikes[0].GirlPrefersNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.GirlLikes) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Girls.GirlId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GirlPrefersNavigation.BoyId)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.GirlId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.GirlId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.GirlId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

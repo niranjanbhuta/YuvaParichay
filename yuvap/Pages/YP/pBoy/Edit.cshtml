@@ -1,0 +1,45 @@
+@page
+@model yuvap.Pages.YP.pBoy.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Boy</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Boy.BoyId" />
+            <div class="form-group">
+                <label asp-for="Boy.Name" class="control-label"></label>
+                <input asp-for="Boy.Name" class="form-control" />
+                <span asp-validation-for="Boy.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boy.MobileNum" class="control-label"></label>
+                <input asp-for="Boy.MobileNum" class="form-control" />
+                <span asp-validation-for="Boy.MobileNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Boy.BoylikedByConcat" class="control-label"></label>
+                <input asp-for="Boy.BoylikedByConcat" class="form-control" />
+                <span asp-validation-for="Boy.BoylikedByConcat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

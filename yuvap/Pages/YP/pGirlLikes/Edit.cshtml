@@ -1,0 +1,35 @@
+@page
+@model yuvap.Pages.YP.pGirlLikes.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>GirlLikes</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="GirlLikes.GirlId" />
+            <div class="form-group">
+                <label asp-for="GirlLikes.GirlPrefers" class="control-label"></label>
+                <select asp-for="GirlLikes.GirlPrefers" class="form-control" asp-items="ViewBag.GirlPrefers"></select>
+                <span asp-validation-for="GirlLikes.GirlPrefers" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

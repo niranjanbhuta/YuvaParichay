@@ -1,0 +1,101 @@
+@page
+@model yuvap.Pages.YP.pBoy.EditWithLikesModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<link rel="stylesheet" type="text/css" href="~/css/addRow.css"  />
+<script src="~/js/addRow.js"> </script>
+
+<h1>Edit</h1>
+ 
+<h4>Boy</h4>
+<hr />
+<div class=  "col">
+    <div class="col-md-5">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <!-- <input type="hidden" asp-for="Boy.BoyId" /> -->
+           <!-- <input  asp-for="Boy.BoyId" /> -->
+
+           <div class="form-group">
+                <label asp-for="Boy.BoyId" class="control-label"></label>  
+                   <input  asp-for="Boy.BoyId" readonly  />                    
+           </div>
+            
+            <div class="form-group">
+                <label asp-for="Boy.Name" class="control-label"></label>
+                <input asp-for="Boy.Name" class="form-control" />
+                <span asp-validation-for="Boy.Name" class="text-danger"></span>
+            </div>
+         
+             <div class="form-group">
+                <label asp-for="Boy.MobileNum" class="control-label"></label>
+                <input asp-for="Boy.MobileNum" class="form-control" />
+               
+                <span asp-validation-for="Boy.MobileNum" class="text-danger"></span>
+            </div>
+         
+            <hr/> 
+            <h5>Enter The Reg. Number of opposit sex candidtaes whom you would like to contact</h5>
+
+    <div>
+        <table cellpadding="0" cellspacing="0" class="TemplateTable" >
+            <tr>
+                <td> Preferred Reg-num. </td>
+
+                <td style="float: right; padding-right: 90px;" >
+                    <div> <img id="Img1" src="~/Images/plus_green.png" width="20" runat="server" /></div>
+
+                    <div>
+                        <a title="Add Data" style="cursor: pointer;" onclick="addRow('prefData')">Add</a>
+                  </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+            <Table id="prefData" cellpadding="0" cellspacing="0" class="custom-tablePopup" >
+                <Thead>
+                    <tr>                       
+                    
+                        <th> Reg. num without prefix like M/F</th>
+                        <th>Delete</th>
+                    </tr>
+                </Thead>
+                <Tbody>    
+
+                   <tr >                            
+                     <td> <input type="text" name="PreferredGirls" value="" >  </td> 
+                     <td><img src="Images/del-x.png" onclick="delRow()" style="width: 22px; cursor: pointer;" /></td>                                                    
+                   </tr>        
+
+                  </Tbody>
+            </Table>
+<!--      
+            <form action="./EditWithLikes">
+  Type Your Reg. Number Without Prefix Like M/F etc:<br>
+  <input type="text" name="id" ><br>  
+  <input type="submit" value="Submit">
+</form>
+-->
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+
+     
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    
+}
+
