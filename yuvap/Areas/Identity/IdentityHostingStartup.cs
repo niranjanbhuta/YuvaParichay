@@ -39,7 +39,9 @@ namespace yuvap.Areas.Identity
 
             services.AddDbContext<ApplicationDbContext> (options =>                
                 //options.UseSqlite
-                options.UseSqlServer(                
+               // options.UseSqlServer
+                options.UseMySql
+                (                
                     context.Configuration.GetConnectionString("DefaultConnection")) ); // DefaultConnection //YPDatabase
 
 

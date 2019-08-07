@@ -1,5 +1,0 @@
-/Users/admin/NSB/yuvap/obj/Debug/netcoreapp2.0.0/yuvap.csprojAssemblyReference.cache
-/Users/admin/NSB/yuvap/obj/Debug/netcoreapp2.0.0/yuvap.csproj.CoreCompileInputs.cache
-/Users/admin/NSB/yuvap/obj/Debug/netcoreapp2.0.0/UserSecretsAssemblyInfo.cs
-/Users/admin/NSB/yuvap/obj/Debug/netcoreapp2.0.0/yuvap.AssemblyInfoInputs.cache
-/Users/admin/NSB/yuvap/obj/Debug/netcoreapp2.0.0/yuvap.AssemblyInfo.cs

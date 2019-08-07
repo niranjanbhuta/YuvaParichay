@@ -26,9 +26,11 @@ namespace yuvap.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySQL("Server=127.0.0.1; port=3306; Database=yuvap_schema;User Id=root; Password=Sumatilal@123");
+                optionsBuilder.UseMySQL("Server=127.0.0.1,3306;Database=indiafxp_yuvap;User Id=india_yuvap;Pwd=Yuvap@123");
             }
         }
+
+// Assembly:  MySql.Data.EntityFrameworkCore (in MySql.Data.EntityFrameworkCore.dll) Version: 8.0.17, https://dev.mysql.doc... 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,7 +40,7 @@ namespace yuvap.Models
             {
     // entity.HasKey(e => e.BoyID); //nsb added
 
-                entity.ToTable("Boy", "yuvap_schema");
+                entity.ToTable("Boy", "indiafxp_yuvap"); //MySql = yuvap ,yuvap_schema) ; MSSql, MySql = indiafxp_yuvap
 
                 entity.Property(e => e.BoyId)
                     .HasColumnName("Reg. Num.") //BoyId
@@ -68,13 +70,13 @@ namespace yuvap.Models
                entity.Property(e => e.EditLock);
                // b.Property<bool>("EditLock");
 
-            });
+            }    );  //')' is extra ? NO.
 
             modelBuilder.Entity<BoyLikes>(entity =>
             {
                 entity.HasKey(e => e.ID);
 
-                entity.ToTable("BoyLikes", "yuvap_schema");
+                entity.ToTable("BoyLikes", "indiafxp_yuvap");
 
                 entity.HasIndex(e => e.BoyPrefers)
                     .HasName("Idx_BoyLikes_BoyPrefers");
@@ -112,7 +114,7 @@ namespace yuvap.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_BoyLikesBoyPrefers_GirlGirlID");           
             
-            });
+            }  );
                // modelBuilder.Entity<BoyLikes>()
                //   .HasIndex(e =>  e.BoyID, e.BoyPrefers).IsUnique();  // nsb 1-2-19. Validate that same girl is not preferred
                    // .HasName("Idx_BoyLikes_BoyId-BoyPrefers");
@@ -122,7 +124,7 @@ namespace yuvap.Models
 
             modelBuilder.Entity<Girl>(entity =>
             {
-                entity.ToTable("Girl", "yuvap_schema");
+                entity.ToTable("Girl", "indiafxp_yuvap");
 
                 entity.Property(e => e.GirlId)
                     .HasColumnName("GirlID")
@@ -146,7 +148,7 @@ namespace yuvap.Models
             {
                 entity.HasKey(e => e.ID);
 
-                entity.ToTable("GirlLikes", "yuvap_schema");
+                entity.ToTable("GirlLikes", "indiafxp_yuvap");
 
                 entity.HasIndex(e => e.GirlPrefers)
                     .HasName("Idx_GirlLikes_GirlPrefers");
@@ -187,8 +189,8 @@ namespace yuvap.Models
               
                
         } // end onmodelcreating
-    }
-}
+    } //end of class
+} // end of name space
 
 /*
 Help
@@ -218,7 +220,8 @@ public int SecondColumn  { get; set;}
             .HasUniqueIndexAnnotation("UK_Employee_Name_Company", 1);
 (f) By code
 if (context.Entities.Any(e => e.FirstColumn == value1 
-                           && e.SecondColumn == value2))
+                           && e.SecondC
+                           olumn == value2))
 {
     // deal with duplicate values here.
 }
