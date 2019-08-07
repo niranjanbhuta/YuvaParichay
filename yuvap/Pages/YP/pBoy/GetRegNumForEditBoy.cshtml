@@ -1,0 +1,20 @@
+@page
+@model yuvap.Pages.YP.pBoy.GetRegNumForEditBoyModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h3>Male:<h3>    
+<h4> After submitting Your Reg. Number, You can Enter Your Data. </h4>
+<h4>Please note that you are not allowed to modify your data after once done.</h4>
+<h5>Consult your Admin to solve any problem.</h5>
+<form action="./EditWithLikes">
+
+  Type Your Reg. Number Without Prefix Like M/F etc:
+  <br>  
+       <select  name="id" asp-items="ViewBag.BoyId"></select>         
+  <br>  
+  <!-- <input type="text" name="id" > -->
+  <input type="submit" value="Submit">
+</form>
