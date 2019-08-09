@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using yuvap.Models;
 using yuvap.ViewModels;
 
-namespace yuvap.Pages.YP.PGirl
+namespace yuvap.Pages.YP.pGirl
 {
     public class EditWithLikesModel : PageModel
     {
@@ -23,9 +23,12 @@ namespace yuvap.Pages.YP.PGirl
 
   [BindProperty]
   //      public IEnumerable<Boy> Boy { get; set; }
-  public Boy Boy { get; set; } //Boy
-  //public Boy Boys { get; set; } //nsb 
-/*
+  public Girl Girl { get; set; } //Boy
+  public Girl GirlToUpdate {get;set;} //nsb 5-2-19
+
+  public IList<Boy> Boys {get;set;} 
+  
+  /*
 [BindProperty]  //nsb 17-1-19
   public BoyIndexData AllTableData {get; set;}
 */
@@ -41,10 +44,12 @@ namespace yuvap.Pages.YP.PGirl
             }
         
            // AllTableData = new BoyIndexData();
-            Boy = await _context.Boy
-            .Include (bl => bl.BoyLikes ) 
-            .FirstOrDefaultAsync(m => m.BoyId == id); //past compatibility
+            Girl = await _context.Girl
+            .Include (gl => gl.GirlLikes ) 
+            .FirstOrDefaultAsync(m => m.GirlId == id); //past compatibility
             
+            Boys = await _context.Boy 
+            .ToListAsync();
           /* 
            // BoyIData.Boys =  await _context.Boy.FirstOrDefaultAsync(m => m.BoyId == id)  
            AllTableData.Boys =  await _context.Boy 
@@ -55,8 +60,8 @@ namespace yuvap.Pages.YP.PGirl
             //.FirstOrDefaultAsync(m => m.BoyId == id); //nsb 
             //error CS0266: Cannot implicitly convert type 'yuvap.Models.Boy' to 'System.Collections.Generic.IEnumerable<yuvap.Models.Boy>'.
            */
-        if (id != null)
-        {
+      //  if (id != null)
+      //  {
         //   BoyId = id.Value;
         // AllTableData Boy = AllTableData.Boys.Where(
     /*/// keep 
@@ -70,10 +75,10 @@ namespace yuvap.Pages.YP.PGirl
        // .AsNoTracking();
         //.single() ;
         
-        }
+      //  }
 
 
-            if (Boy == null)
+            if (Girl == null)
             {
                 return NotFound();
             }
@@ -82,17 +87,17 @@ namespace yuvap.Pages.YP.PGirl
   } //end of get
 
    //public async Task<IActionResult> OnPostAsync(int? id)
-   public async Task<IActionResult> OnPostAsync(int? id,int[] PreferredGirls) //To Edit BoyPrefers data 
+   public async Task<IActionResult> OnPostAsync(int? id,int[] PreferredBoys) //To Edit BoyPrefers data 
   {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            var BoyToUpdate = await _context.Boy
+            var GirlToUpdate = await _context.Girl
             // Boy = await _context.Boy
-            .Include (bl => bl.BoyLikes ) 
-            .FirstOrDefaultAsync(m => m.BoyId == id); //past compatibility
+            .Include (gl => gl.GirlLikes ) 
+            .FirstOrDefaultAsync(m => m.GirlId == id); //past compatibility
             
 
           //  _context.Attach(Boy).State = EntityState.Modified;
@@ -116,8 +121,8 @@ namespace yuvap.Pages.YP.PGirl
             //BoyToUpdate.BoyLikes
 
 
-            if(await TryUpdateModelAsync<Boy>(
-               BoyToUpdate, "Boy"     //not Boy but "Boy" reqd. , All parent data saved/ updated. OK keep.
+            if(await TryUpdateModelAsync<Girl>(
+               GirlToUpdate, "Girl"     //not Boy but "Boy" reqd. , All parent data saved/ updated. OK keep.
                //, "Boy" 
                //, i => i.BoyId, i => i.Name, i => i.MobileNum 
              // ,  i => i.Boy.Name, i => i.Boy.MobileNum //OK but can be auto.
@@ -125,11 +130,11 @@ namespace yuvap.Pages.YP.PGirl
                ))
             {               
               //Update BoyBoyLikes BoyPrefers data 
-              if(PreferredGirls == null) //go back without doing anything.
+              if(PreferredBoys == null) //go back without doing anything.
               {return Page() ;}
 
-              var PreferredGirlsHS = new HashSet<int>(PreferredGirls);
-                int cnt = 0; // 1 //PreferredGirlsHS.count
+     //         var PreferredGirlsHS = new HashSet<int>(PreferredGirls);
+     //           int cnt = 0; // 1 //PreferredGirlsHS.count
              
              /* 
               foreach (var PGirl in PreferredGirls)
@@ -140,14 +145,40 @@ namespace yuvap.Pages.YP.PGirl
                 } 
              */
 
-             foreach( var item in BoyToUpdate.BoyLikes)
+             foreach( var item in GirlToUpdate.GirlLikes)
                 {
                     //if cnt > PreferredGirls.count() 
-                    item.BoyPrefers = PreferredGirls[cnt];
-                    cnt++;
+                   // item.BoyPrefers = PreferredGirls[cnt];
+                   // cnt++;
+                    _context.GirlLikes.Remove(item);
                 }
 
+              foreach (var PBoy in PreferredBoys)
+                {
+                // BoyLikes.Find(1).BoyPrefers = PGirl;
+               // BoyToUpdate.BoyLikes.Find(1).BoyPrefers = PGirl; //Err:  'ICollection<BoyLikes>' does not contain a definition for 'Find'
+               //var author = new Author{ FirstName = "William", LastName = "Shakespeare" };
+               var gl = new GirlLikes(); 
+            
+               gl.GirlId=Girl.GirlId;  //id;
+               gl.GirlPrefers = PBoy;
+
+               //bl.BoyLikes.ID = 
+               // BoyToUpdate.BoyLikes.add(new BoyLikes{BoyToUpdate.BoyId, PGirl}); //Err:  'ICollection<BoyLikes>' does not contain a definition for 'Find'
+               //BoyToUpdate.BoyLikes.add(bl); //err: 'ICollection<BoyLikes>' does not contain a definition for 'add'
+              //  bLikesListv.Add(bl); // OK. WARNING .add instead of .Add wasted lot of time ! // Var never used !
+              
+               _context.GirlLikes.Add(gl); //OK
+               // boySingleRelData.BoyLikesEnumerable.Add(bl); //err: 'IEnumerable<BoyLikes>' does not contain a definition for 'Add'
+                //cnt++;
+//return NotFound("Test: PreferredGirls 1st val =  " + bl.BoyPrefers );  //test
+
+            // await _context.SaveChangesAsync(); // Dt 7-2-19 Err: Duplicate entry '20' for key 'PRIMARY'
+                } 
+
+
             }
+           
             else {//return NoContent();
              //return NotFound();
             }
@@ -175,8 +206,12 @@ namespace yuvap.Pages.YP.PGirl
             */
  
             return RedirectToPage("./Index");
-   }
-
+   } //end of post
+   private bool GirlExists(int id) // nsb dt 1-2-19
+  {
+            return _context.Girl.Any(e => e.GirlId == id);
+  }
+           
   private bool BoyExists(int id)
   {
             return _context.Boy.Any(e => e.BoyId == id);

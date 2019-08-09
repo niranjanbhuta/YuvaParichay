@@ -1,15 +1,16 @@
 @page
-@model yuvap.Pages.YP.pBoy.EditWithLikesModel
+@model yuvap.Pages.YP.pGirl.EditWithLikesModel
 
 @{
     ViewData["Title"] = "Edit";
 }
-<link rel="stylesheet" type="text/css" href="~/css/addRow.css"  />
-<script src="~/js/addRow.js"> </script>
+
+<link rel="stylesheet" type="text/css" href="~/css/yuvap.css"  />
+<script src="~/js/yuvap3.Valid.js"> </script> 
 
 <h1>Edit</h1>
- 
-<h4>Boy</h4>
+
+<h4>Girl</h4>
 <hr />
 <div class=  "col">
     <div class="col-md-5">
@@ -17,38 +18,35 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
           <!-- <input type="hidden" asp-for="Boy.BoyId" /> -->
            <!-- <input  asp-for="Boy.BoyId" /> -->
-
            <div class="form-group">
-                <label asp-for="Boy.BoyId" class="control-label"></label>  
-                   <input  asp-for="Boy.BoyId" readonly  />                    
+                <label asp-for="Girl.GirlId" class="control-label"></label>  
+                   <input  asp-for="Girl.GirlId" readonly  />                    
            </div>
             
             <div class="form-group">
-                <label asp-for="Boy.Name" class="control-label"></label>
-                <input asp-for="Boy.Name" class="form-control" />
-                <span asp-validation-for="Boy.Name" class="text-danger"></span>
+                <label asp-for="Girl.Name" class="control-label"></label>
+                <input asp-for="Girl.Name" class="form-control" />
+                <span asp-validation-for="Girl.Name" class="text-danger"></span>
             </div>
          
              <div class="form-group">
-                <label asp-for="Boy.MobileNum" class="control-label"></label>
-                <input asp-for="Boy.MobileNum" class="form-control" />
-               
-                <span asp-validation-for="Boy.MobileNum" class="text-danger"></span>
-            </div>
-         
+                <label asp-for="Girl.MobileNum" class="control-label"></label>
+                <input asp-for="Girl.MobileNum" class="form-control" />               
+                <span asp-validation-for="Girl.MobileNum" class="text-danger"></span>
+            </div>         
             <hr/> 
             <h5>Enter The Reg. Number of opposit sex candidtaes whom you would like to contact</h5>
+            <h5>Same number if repeated, will be removed ! </h5>
 
     <div>
         <table cellpadding="0" cellspacing="0" class="TemplateTable" >
-            <tr>
-                <td> Preferred Reg-num. </td>
+            <tr>               
 
                 <td style="float: right; padding-right: 90px;" >
                     <div> <img id="Img1" src="~/Images/plus_green.png" width="20" runat="server" /></div>
 
                     <div>
-                        <a title="Add Data" style="cursor: pointer;" onclick="addRow('prefData')">Add</a>
+                        <a title="Add Data" style="cursor: pointer;" onclick="addRow('prefData')">Add Preferred Reg-num </a>
                   </div>
                 </td>
             </tr>
@@ -57,28 +55,30 @@
 
             <Table id="prefData" cellpadding="0" cellspacing="0" class="custom-tablePopup" >
                 <Thead>
-                    <tr>                       
-                    
+                    <tr>                 
                         <th> Reg. num without prefix like M/F</th>
                         <th>Delete</th>
                     </tr>
                 </Thead>
                 <Tbody>    
 
-                   <tr >                            
-                     <td> <input type="text" name="PreferredGirls" value="" >  </td> 
-                     <td><img src="Images/del-x.png" onclick="delRow()" style="width: 22px; cursor: pointer;" /></td>                                                    
-                   </tr>        
-
-                  </Tbody>
+                <tr >                            
+                 <td>                                
+                     <select id ="selectTopRow" value="" name="PreferredGirls" style="width: 90px;" aria-invalid="false" type="text"  >
+                          <option value="" selected disabled hidden>Select</option> 
+                               @foreach (var  gid in   Model.Boys )  
+                                 {
+                                    <option value="@gid.BoyId">@gid.BoyId</option>
+                                 }   
+                      </select>        
+                     <script>var strOptList = document.getElementById("selectTopRow").innerHTML;                        
+                     </script>                     
+                   </td>                         
+                         <td><img src="~/Images/del-x.png" onclick="delRow()" style="width: 22px; cursor: pointer;" /></td>                                                    
+                 </tr>    
+                </Tbody>
             </Table>
-<!--      
-            <form action="./EditWithLikes">
-  Type Your Reg. Number Without Prefix Like M/F etc:<br>
-  <input type="text" name="id" ><br>  
-  <input type="submit" value="Submit">
-</form>
--->
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -88,14 +88,10 @@
 
 <div>
     <a asp-page="./Index">Back to List</a>
-</div>
-
-
-     
+</div>     
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
     
 }
 

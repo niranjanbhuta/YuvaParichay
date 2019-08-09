@@ -14,7 +14,7 @@ namespace yuvap.Pages.YP.pBoy
     public class EditWithLikesModel : PageModel
     {
         private readonly yuvap.Models.YPContext _context;
-        public int[] Likes;
+        public int[] Likes; // It is never used. 8-8-19
 
         public EditWithLikesModel(yuvap.Models.YPContext context)
         {
@@ -191,7 +191,7 @@ namespace yuvap.Pages.YP.pBoy
                 // BoyLikes.Find(1).BoyPrefers = PGirl;
                // BoyToUpdate.BoyLikes.Find(1).BoyPrefers = PGirl; //Err:  'ICollection<BoyLikes>' does not contain a definition for 'Find'
                //var author = new Author{ FirstName = "William", LastName = "Shakespeare" };
-            var bl = new BoyLikes(); 
+               var bl = new BoyLikes(); 
             
                bl.BoyId=Boy.BoyId;  //id;
                bl.BoyPrefers = PGirl;
@@ -201,7 +201,7 @@ namespace yuvap.Pages.YP.pBoy
                //BoyToUpdate.BoyLikes.add(bl); //err: 'ICollection<BoyLikes>' does not contain a definition for 'add'
               //  bLikesListv.Add(bl); // OK. WARNING .add instead of .Add wasted lot of time ! // Var never used !
               
-            _context.BoyLikes.Add(bl); //OK
+               _context.BoyLikes.Add(bl); //OK
                // boySingleRelData.BoyLikesEnumerable.Add(bl); //err: 'IEnumerable<BoyLikes>' does not contain a definition for 'Add'
                 //cnt++;
 //return NotFound("Test: PreferredGirls 1st val =  " + bl.BoyPrefers );  //test
@@ -278,7 +278,7 @@ namespace yuvap.Pages.YP.pBoy
             */
  
             return RedirectToPage("./Index");
-   }
+   } //end of post
 
   private bool BoyExists(int id)
   {
