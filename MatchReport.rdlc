@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Tablix Name="Tablix1">
+        <TablixBody>
+          <TablixColumns>
+            <TablixColumn>
+              <Width>2.61458in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>2.61458in</Width>
+            </TablixColumn>
+          </TablixColumns>
+          <TablixRows>
+            <TablixRow>
+              <Height>0.42188in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox2">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value EvaluationMode="Constant">Boy-Code</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>11pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox2</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox3">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value EvaluationMode="Constant">Girl-Code</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>11pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#7292cc</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.42188in</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="BoyCode">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!IdCandidateFK.Value</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="IdLikedBy">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Label>GirlCode</Label>
+                              <Value>=Fields!IdILike.Value</Value>
+                              <Style>
+                                <FontFamily>Tahoma</FontFamily>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>#4d4d4d</Color>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>IdLikedBy</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>#e5e5e5</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+          </TablixRows>
+        </TablixBody>
+        <TablixColumnHierarchy>
+          <TablixMembers>
+            <TablixMember />
+            <TablixMember />
+          </TablixMembers>
+        </TablixColumnHierarchy>
+        <TablixRowHierarchy>
+          <TablixMembers>
+            <TablixMember>
+              <KeepWithGroup>After</KeepWithGroup>
+            </TablixMember>
+            <TablixMember>
+              <Group Name="Details" />
+            </TablixMember>
+          </TablixMembers>
+        </TablixRowHierarchy>
+        <RepeatRowHeaders>true</RepeatRowHeaders>
+        <DataSetName>DataSet1</DataSetName>
+        <SortExpressions>
+          <SortExpression>
+            <Value>=Fields!IdCandidateFK.Value</Value>
+          </SortExpression>
+          <SortExpression>
+            <Value>=Fields!IdLikedBy.Value</Value>
+          </SortExpression>
+        </SortExpressions>
+        <Top>0.1125in</Top>
+        <Left>0.4375in</Left>
+        <Height>0.84376in</Height>
+        <Width>5.22916in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Tablix>
+    </ReportItems>
+    <Height>2.65625in</Height>
+    <Style />
+  </Body>
+  <Width>7.09375in</Width>
+  <Page>
+    <PageHeader>
+      <Height>0.90764in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox1">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Pairs of Boy &amp; Girl Liking Each other</Value>
+                  <Style>
+                    <FontSize>16pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>0.40917in</Top>
+          <Left>0.45292in</Left>
+          <Height>0.375in</Height>
+          <Width>5.21375in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Image Name="HastMilap">
+          <Source>Embedded</Source>
+          <Value>HastMilap</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.03694in</Top>
+          <Left>5.95708in</Left>
+          <Height>0.87069in</Height>
+          <Width>1.0625in</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
+        <Textbox Name="Textbox5">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Page </Value>
+                  <Style />
+                </TextRun>
+                <TextRun>
+                  <Value>=Globals!PageNumber</Value>
+                  <Style />
+                </TextRun>
+                <TextRun>
+                  <Value> Of </Value>
+                  <Style />
+                </TextRun>
+                <TextRun>
+                  <Value>=Globals!TotalPages</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox5</rd:DefaultName>
+          <Top>0.0425in</Top>
+          <Left>1.45708in</Left>
+          <Height>0.25in</Height>
+          <Width>3.9375in</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageFooter>
+      <Height>0.43625in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox4">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>This Computer Program Is Developed By Niranjan S. Bhuta.  M=09586887180</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>0.0925in</Top>
+          <Left>0.15709in</Left>
+          <Height>0.25in</Height>
+          <Width>6.75958in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSet1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>ed0856ad-e52f-4d53-8b46-61ac27e0d166</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>DataSet1</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="IdCandidateFK">
+          <DataField>IdCandidateFK</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IdILike">
+          <DataField>IdILike</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IdLikedBy">
+          <DataField>IdLikedBy</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DataSet1</rd:DataSetName>
+        <rd:SchemaPath>F:\Dropbox\YuvaParichay\DataSet1.xsd</rd:SchemaPath>
+        <rd:TableName>qryMatchBoyGirl</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>qryMatchBoyGirlTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <EmbeddedImages>
+    <EmbeddedImage Name="HastMilap">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>c3dd0d8f-6399-4ebb-a066-a0db30233646</rd:ReportID>
+</Report>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PublishUrlHistory>C:\nsb\Dropbox\YPPublish2\|C:\nsb\Dropbox\YPPublishAutoDwnPreReq\|c:\nsb\Dropbox\YPPublishAuto2Dwn\|c:\nsb\Dropbox\YPPublish\|F:\Dropbox\YPPublish\</PublishUrlHistory>
+    <InstallUrlHistory>http://nsbhuta.bitrex24.com/yuvaparichay/|http://nsbhuta.bitrex24.com/</InstallUrlHistory>
+    <SupportUrlHistory />
+    <UpdateUrlHistory />
+    <BootstrapperUrlHistory />
+    <ErrorReportUrlHistory />
+    <FallbackCulture>en-US</FallbackCulture>
+    <VerifyUploadedFiles>false</VerifyUploadedFiles>
+    <ProjectView>ProjectFiles</ProjectView>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <StartWorkingDirectory>Q:\nsb\Dropbox\YuvaParichay\bin\debug</StartWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <StartWorkingDirectory>I:\Dropbox\YuvaParichay\bin\Debug\</StartWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ReferencePath>e:\nsb\Dropbox\YuvaParichay\bin\Debug\</ReferencePath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableSecurityDebugging>false</EnableSecurityDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'nsbNewProjConfig|x86'">
+    <EnableUnmanagedDebugging>true</EnableUnmanagedDebugging>
+    <EnableSQLServerDebugging>true</EnableSQLServerDebugging>
+  </PropertyGroup>
+</Project>

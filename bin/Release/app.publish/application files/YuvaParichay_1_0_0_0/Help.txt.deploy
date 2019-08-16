@@ -1,0 +1,86 @@
+﻿*****
+Girls:
+INSERT INTO GirlsLikedBy
+                         (IdCandidateFK, IdCandidateFK)
+SELECT        Girls.IdCandidatePK, BoysLike.IdCandidateFK
+FROM            Girls INNER JOIN
+                         BoysLike ON Girls.IdCandidatePK = BoysLike.IdILike
+
+
+Boys:
+						 INSERT INTO BoysLikedBy ( IdCandidateFK, IdLikedBy )
+SELECT Boys.IdCandidatePK, GirlsLike.IdCandidateFK
+FROM Boys INNER JOIN GirlsLike ON Boys.IdCandidatePK=GirlsLike.IdILike;
+
+*****
+http://seanconnolly.com/
+<< Saving datagridview data to a clipboard in an MDI environment ASP.NET visual basic visual studio 2005| Home | Error: Wireless stuck on Acquiring Network Address forever under Windows XP - Event ID 1002 >>
+how to paste data from clipboard to DataGridView visual basic .net
+Someone was kind enough to post this in C# (http://forums.microsoft.com/MSDN/ShowPost.aspx?PostID=917754&SiteID=1), so I converted it to visual basic.net:
+
+Sub pastefromclipboardtodatagridview(ByVal dgv As DataGridView)
+        Dim rowSplitter As Char() = {vbCr, vbLf}
+        Dim columnSplitter As Char() = {vbTab}
+ 
+        'get the text from clipboard
+ 
+        Dim dataInClipboard As IDataObject = Clipboard.GetDataObject()
+        Dim stringInClipboard As String = CStr(dataInClipboard.GetData(DataFormats.Text))
+ 
+        'split it into lines
+        Dim rowsInClipboard As String() = stringInClipboard.Split(rowSplitter, StringSplitOptions.RemoveEmptyEntries)
+ 
+        'get the row and column of selected cell in grid
+        Dim r As Integer = dgv.SelectedCells(0).RowIndex
+        Dim c As Integer = dgv.SelectedCells(0).ColumnIndex
+ 
+        'add rows into grid to fit clipboard lines
+        If (dgv.Rows.Count < (r + rowsInClipboard.Length)) Then
+            dgv.Rows.Add(r + rowsInClipboard.Length - dgv.Rows.Count)
+        End If
+ 
+        ' loop through the lines, split them into cells and place the values in the corresponding cell.
+        Dim iRow As Integer = 0
+        While iRow < rowsInClipboard.Length
+            'split row into cell values
+            Dim valuesInRow As String() = rowsInClipboard(iRow).Split(columnSplitter)
+            'cycle through cell values
+            Dim iCol As Integer = 0
+            While iCol < valuesInRow.Length
+                'assign cell value, only if it within columns of the grid
+                If (dgv.ColumnCount - 1 >= c + iCol) Then
+                    dgv.Rows(r + iRow).Cells(c + iCol).Value = valuesInRow(iCol)
+                End If
+                iCol += 1
+            End While
+            iRow += 1
+        End While
+ 
+    End Sub
+ 
+
+Print | posted on Sunday, May 18, 2008 5:44 PM
+Comments on this post
+
+# re: how to paste data from clipboard to DataGridView visual basic .net
+Requesting Gravatar...This is really useful, Thanks... but one enhancement request - can anybody amend this to work for a databound grid, it seems that it won;t allow you to use the:
+dgv.rows.add(4)
+if the grid is a databound one. I assume we need to add rows to the underlying datasource first!
+Left by Tom Loder on Oct 14, 2008 11:41 AM
+# re: how to paste data from clipboard to DataGridView visual basic .net
+Requesting Gravatar...Really useful! Thx for taking the time to post.
+Left by DCoder on Apr 14, 2009 3:40 PM
+# re: how to paste data from clipboard to DataGridView visual basic .net
+Requesting Gravatar...Thank you so much.
+
+This is a very handy useful code.
+I just copy and pasted it in my code, prefixed it with "Private " and linked to a control and pressed F5, and bam!
+
+It helped the general design of my simple code generation application.
+
+Thanks really, saved much of my time.
+Left by Asset Michael F. Tacac on Aug 03, 2009 5:59 PM
+
+
+
+Temp: No Data Entry/Edit, it is for processing of data of STEP-1 and STEP-2. If data of Step-1/2 are modified then this Step must be Run again.
