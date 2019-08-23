@@ -1,0 +1,765 @@
+﻿
+
+*****
+Girls:
+INSERT INTO GirlsLikedBy
+                         (IdCandidateFK, IdCandidateFK)
+SELECT        Girls.IdCandidatePK, BoysLike.IdCandidateFK
+FROM            Girls INNER JOIN
+                         BoysLike ON Girls.IdCandidatePK = BoysLike.IdILike
+
+
+Boys:
+						 INSERT INTO BoysLikedBy ( IdCandidateFK, IdLikedBy )
+SELECT Boys.IdCandidatePK, GirlsLike.IdCandidateFK
+FROM Boys INNER JOIN GirlsLike ON Boys.IdCandidatePK=GirlsLike.IdILike;
+
+*****
+http://seanconnolly.com/
+<< Saving datagridview data to a clipboard in an MDI environment ASP.NET visual basic visual studio 2005| Home | Error: Wireless stuck on Acquiring Network Address forever under Windows XP - Event ID 1002 >>
+how to paste data from clipboard to DataGridView visual basic .net
+Someone was kind enough to post this in C# (http://forums.microsoft.com/MSDN/ShowPost.aspx?PostID=917754&SiteID=1), so I converted it to visual basic.net:
+
+Sub pastefromclipboardtodatagridview(ByVal dgv As DataGridView)
+        Dim rowSplitter As Char() = {vbCr, vbLf}
+        Dim columnSplitter As Char() = {vbTab}
+ 
+        'get the text from clipboard
+ 
+        Dim dataInClipboard As IDataObject = Clipboard.GetDataObject()
+        Dim stringInClipboard As String = CStr(dataInClipboard.GetData(DataFormats.Text))
+ 
+        'split it into lines
+        Dim rowsInClipboard As String() = stringInClipboard.Split(rowSplitter, StringSplitOptions.RemoveEmptyEntries)
+ 
+        'get the row and column of selected cell in grid
+        Dim r As Integer = dgv.SelectedCells(0).RowIndex
+        Dim c As Integer = dgv.SelectedCells(0).ColumnIndex
+ 
+        'add rows into grid to fit clipboard lines
+        If (dgv.Rows.Count < (r + rowsInClipboard.Length)) Then
+            dgv.Rows.Add(r + rowsInClipboard.Length - dgv.Rows.Count)
+        End If
+ 
+        ' loop through the lines, split them into cells and place the values in the corresponding cell.
+        Dim iRow As Integer = 0
+        While iRow < rowsInClipboard.Length
+            'split row into cell values
+            Dim valuesInRow As String() = rowsInClipboard(iRow).Split(columnSplitter)
+            'cycle through cell values
+            Dim iCol As Integer = 0
+            While iCol < valuesInRow.Length
+                'assign cell value, only if it within columns of the grid
+                If (dgv.ColumnCount - 1 >= c + iCol) Then
+                    dgv.Rows(r + iRow).Cells(c + iCol).Value = valuesInRow(iCol)
+                End If
+                iCol += 1
+            End While
+            iRow += 1
+        End While
+ 
+    End Sub
+ 
+
+Print | posted on Sunday, May 18, 2008 5:44 PM
+Comments on this post
+
+# re: how to paste data from clipboard to DataGridView visual basic .net
+Requesting Gravatar...This is really useful, Thanks... but one enhancement request - can anybody amend this to work for a databound grid, it seems that it won;t allow you to use the:
+dgv.rows.add(4)
+if the grid is a databound one. I assume we need to add rows to the underlying datasource first!
+Left by Tom Loder on Oct 14, 2008 11:41 AM
+# re: how to paste data from clipboard to DataGridView visual basic .net
+Requesting Gravatar...Really useful! Thx for taking the time to post.
+Left by DCoder on Apr 14, 2009 3:40 PM
+# re: how to paste data from clipboard to DataGridView visual basic .net
+Requesting Gravatar...Thank you so much.
+
+This is a very handy useful code.
+I just copy and pasted it in my code, prefixed it with "Private " and linked to a control and pressed F5, and bam!
+
+It helped the general design of my simple code generation application.
+
+Thanks really, saved much of my time.
+Left by Asset Michael F. Tacac on Aug 03, 2009 5:59 PM
+
+Temp: No Data Entry/Edit, it is for processing of data of STEP-1 and STEP-2. If data of Step-1/2 are modified then this Step must be Run again.
+
+*************************************************************************
+//26-12-14
+
+//if ((ds.Tables["BoysLike"] != null)) {
+//     base.Tables.Add(new BoysLikeDataTable(ds.Tables["BoysLike"]));
+// }
+
+//Sample
+//var matchingEmployees = from dept in Departments
+//                        join emp in Employees on dept.DeptNo equals emp.DeptNo
+//                        into AvailableEmployees
+//                        select new { department = dept, employees = AvailableEmployees };
+
+//this.GroupEmployee = matchingEmployees.ToDictionary(x => x.department, y => y.employees);
+
+////dgvEmployees.DataSource = matchingEmployees.ToList();
+////bsEmployees.DataSource = matchingEmployees.ToList();
+//bsDepartments.DataSource = GroupEmployee.Keys;
+
+//         //add relations between tables
+//DepartmentGroupRelation = FormData.Relations.Add(DEPARTMENT_GROUP_RELATION,
+//    DepartmentTable.Columns[DEPARTMENT_ID], 
+//    GroupTable.Columns[GROUP_DEPARTMENT], true);
+
+//GroupStudentRelation = FormData.Relations.Add(GROUP_STUDENT_RELATION,
+//    GroupTable.Columns[GROUP_ID], 
+//    StudentTable.Columns[STUDENT_GROUP], false);
+//add relations between tables
+
+//this.relationBoysBoysLike = this.Relations["BoysBoysLike"];
+//    this.relationBoysBoysLikedBy = this.Relations["BoysBoysLikedBy"];
+//    this.relationBoysGirlsLike = this.Relations["BoysGirlsLike"];
+//    this.relationGirlsGirlsLike = this.Relations["GirlsGirlsLike"];
+//    this.relationGirlsGirlsLikedBy = this.Relations["GirlsGirlsLikedBy"];
+
+//relationBoysBoysLike = new global::System.Data.DataRelation("BoysBoysLike", new global::System.Data.DataColumn[] {
+//               DataSet1.BoysDataTable.IdCandidatePKColumn}, new global::System.Data.DataColumn[] {
+//               this.tableBoysLike.IdCandidateFKColumn}, false);
+
+// ds.Relations.AddRange(new DataRelation[] { relationBoysBoysLike }); //relationGirlsGirlsLike, relationBoysBoysLikedBy, }); 
+//DataRelationCollection datarelCollection = ds.Relations; //see form load
+//dataGridView2.DataMember = ds.Relations[0].RelationName;
+
+
+**************************************************************
+// Sample from code proj 
+// data binding.
+////department binding data source
+//bsrcDepartments.DataSource = FormData;
+//bsrcDepartments.DataMember = DEPARTMENT_TABLE;
+//gridDepartments.DataSource = bsrcDepartments;
+
+// // We set bsrcDepartment (bounding source object) as data source to make
+//// groups list filtered by current department in gridGroups
+//bsrcGroups.DataSource = bsrcDepartments;
+//bsrcGroups.DataMember = DEPARTMENT_GROUP_RELATION;
+//gridGroups.DataSource = bsrcGroups;
+
+//private void saveButton_Cli ck(object sender, System.EventArgs e)
+//{
+
+//    try
+//    {      //NB************* diff from vb- see usings
+//        OleDbCommandBuilder commandbuilder = new
+//            OleDbCommandBuilder(oleDbDataAdapter1);
+
+//        oleDbDataAdapter1.Update(table);
+//    }
+//    catch (Exception exceptionObject)
+//    {
+//        MessageBox.Show(exceptionObject.Message);
+//    }
+//}
+
+Dt 26-12-14  *************************** ******************************  File IO  
+
+  public class YuvaParichayDataDirFile   // SimpleFileCopy
+    {
+        static void Main()
+        {
+            string fileName = "YuvaParichay.accdb"; //"test.txt";
+            string sourcePath = @"C:\YP";    //@"C:\Users\Public\TestFolder";
+            string targetPath = @"C:\Users\Public\TestFolder\SubDir";
+
+            // Use Path class to manipulate file and directory paths.
+            string sourceFile = System.IO.Path.Combine(sourcePath, fileName);
+            string destFile = System.IO.Path.Combine(targetPath, fileName);
+
+            // To copy a folder's contents to a new location:
+            // Create a new target folder, if necessary.
+            if (!System.IO.Directory.Exists(targetPath))
+            {
+                System.IO.Directory.CreateDirectory(targetPath);
+            }
+
+            // To copy a file to another location and 
+            // overwrite the destination file if it already exists.
+            System.IO.File.Copy(sourceFile, destFile, true);
+
+            // To copy all the files in one directory to another directory.
+            // Get the files in the source folder. (To recursively iterate through
+            // all subfolders under the current directory, see
+            // "How to: Iterate Through a Directory Tree.")
+            // Note: Check for target path was performed previously
+            //       in this code example.
+            if (System.IO.Directory.Exists(sourcePath))
+            {
+                string[] files = System.IO.Directory.GetFiles(sourcePath);
+
+                // Copy the files and overwrite destination files if they already exist.
+                foreach (string s in files)
+                {
+                    // Use static Path methods to extract only the file name from the path.
+                    fileName = System.IO.Path.GetFileName(s);
+                    destFile = System.IO.Path.Combine(targetPath, fileName);
+                    System.IO.File.Copy(s, destFile, true);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Source path does not exist!");
+            }
+
+            // Keep console window open in debug mode.
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
+        }
+    }
+
+   ********************** Current Dir
+    try 
+        {
+            // Get the current directory. 
+            string path = Directory.GetCurrentDirectory();
+            string target = @"c:\temp";
+            Console.WriteLine("The current directory is {0}", path);
+            if (!Directory.Exists(target)) 
+            {
+                Directory.CreateDirectory(target);
+            }
+
+            // Change the current directory.
+            Environment.CurrentDirectory = (target);
+            if (path.Equals(Directory.GetCurrentDirectory())) 
+            {
+                Console.WriteLine("You are in the temp directory.");
+            } 
+            else 
+            {
+                Console.WriteLine("You are not in the temp directory.");
+            }
+        } 
+        catch (Exception e) 
+        {
+            Console.WriteLine("The process failed: {0}", e.ToString());
+        }
+    }
+
+
+	  ***********************************
+	  Dt 1-1-15 Backup
+	  
+     private void btnStep4BoysReport_Click(object sender, EventArgs e)
+     {
+         MessageBox.Show("Boy Report is processed! ");
+   
+         //foreach (Control ctrl in this.pnlDataGrid.Controls)
+         //{
+         //    ctrl.Visible = false;
+         //}
+         // boysLikeBindingSource.DataMember = ds.Relations["BoysBoysLike"].RelationName;//ds.Tables[0]; //this.boysBindingSource;
+         // qryBoysAndBoysLikedByTableAdapter
+
+         //Outer-Loop w.r.t. boy-table
+         System.Data.DataRelation relBoyLikedBy  = ds.Relations["BoysBoysLikedBy"]; //.RelationName;
+   
+         foreach (DataRow  boyRow in  ds.Tables["Boys"].Rows) //   qryBoysAndBoysLikedByTableAdapter.)
+         {
+             //Find to boy-code 
+              //string  boyCode =(string ) boyRow[0]; 
+           DataRow [] childRows =  boyRow.GetChildRows(relBoyLikedBy);
+        //Inner-loop w.r.t qry
+
+           foreach (DataRow childRow in childRows) //   qryBoysAndBoysLikedByTableAdapter.)
+            {
+             boyRow["BoysLikedByConcat"] = (string)boyRow["BoysLikedByConcat"] + (string)childRow["BoysLikedBy"];
+             //Go to boy-code 
+
+          // int choiceRowLen = boyLikedByRow.Length;
+         //  string strTemp = boyLikedByRow.["IdCandidatePK"].ToString;
+            }
+        }
+
+         boysTableAdapter.Update(this.dataSet1);
+         MessageBox.Show("Boy Report Saved! ");
+   
+            
+         // foreach (string qryBoysAndBoysLikedByRow in ds.Tables["qryBoysAndBoysLikedByTableAdapter"].Rows) //   qryBoysAndBoysLikedByTableAdapter.)
+         //{
+         //    qryBoysAndBoysLikedByRow["BoysLikedByConcat"].ToString = 
+         //        qryBoysAndBoysLikedByRow["BoysLikedByConcat"].ToString +qryBoysAndBoysLikedByRow["BoysLikedByConcat"].ToString
+ 
+         //     for( int i = 0; i < splitted.Count(); i++ )
+        //{
+        //    Console.WriteLine("{0}: {1}", i, splitted[i]);
+        //}
+
+         //obj_ChildRows = obj_ParentRow.GetChildRows("relation_Category_Product") 
+
+         
+        //System.Data.DataRelation relBoyLikedBy  = ds.Relations["BoysBoysLikedBy"]; //.RelationName;
+        // //ds.Relations["BoysBoysLikedBy"].RelationName
+        // relBoyLikedBy.
+
+
+        // for (int n = 0; n < )
+        // foreach (string boyRow in ds.Relations["BoysBoysLikedBy"]); //.RelationName.Rows) //   qryBoysAndBoysLikedByTableAdapter.)
+        // {
+        //     qryBoysAndBoysLikedByRow["BoysLikedByConcat"].ToString = 
+        //         qryBoysAndBoysLikedByRow["BoysLikedByConcat"].ToString +qryBoysAndBoysLikedByRow["BoysLikedByConcat"].ToString
+
+
+        //     //Find to boy-code 
+        //     //string  boyCode =(string ) boyRow[0]; 
+
+        //     //Inner-loop w.r.t qry
+
+        //     foreach (string boyLikedByRow in ds.Tables["BoysLikedBy"].Rows) //   qryBoysAndBoysLikedByTableAdapter.)
+        //     {
+        //         //Go to boy-code 
+
+        //         int choiceRowLen = boyLikedByRow.Length;
+        //         //  string strTemp = boyLikedByRow.["IdCandidatePK"].ToString;
+        //     }
+
+        // }
+     } //End of BoyStep4Rep_Clk
+
+
+	 ******************* Split-container and Binding-source for master details data grid view ************
+	 http://msdn.microsoft.com/en-us/library/vstudio/c12c1kx4(v=vs.100).aspx
+
+	 masterDataGridView.Dock = DockStyle.Fill;
+        detailsDataGridView.Dock = DockStyle.Fill;
+
+        SplitContainer splitContainer1 = new SplitContainer();
+        splitContainer1.Dock = DockStyle.Fill;
+        splitContainer1.Orientation = Orientation.Horizontal;
+        splitContainer1.Panel1.Controls.Add(masterDataGridView);
+        splitContainer1.Panel2.Controls.Add(detailsDataGridView);
+
+        this.Controls.Add(splitContainer1);
+        this.Load += new System.EventHandler(Form1_Load);
+        this.Text = "DataGridView master/detail demo";
+
+
+***************** BindingSource.List Property ****************** Dt 11-2-15
+private void button1_Click(object sender, EventArgs e)
+{
+    // Create the connection string, data adapter and data table.
+    SqlConnection connectionString =
+         new SqlConnection("Initial Catalog=Northwind;" +
+         "Data Source=localhost;Integrated Security=SSPI;");
+    SqlDataAdapter customersTableAdapter =
+        new SqlDataAdapter("Select * from Customers", connectionString);
+    DataTable customerTable = new DataTable();
+
+    // Fill the the adapter with the contents of the customer table.
+    customersTableAdapter.Fill(customerTable);
+
+    // Set data source for BindingSource1.
+    BindingSource1.DataSource = customerTable;
+
+    // Set the label text to the number of items in the collection before 
+    // an item is removed.
+    label1.Text = "Starting count: " + BindingSource1.Count.ToString();
+
+    // Access the List property and remove an item.
+    BindingSource1.List.RemoveAt(4);
+
+    // Remove an item directly from the BindingSource.  
+    // This is equivalent to the previous line of code.
+    BindingSource1.RemoveAt(4);
+
+    // Show the new count.
+    label2.Text = "Count after removal: " + BindingSource1.Count.ToString();
+}
+
+
+**************** DataRowView  *********** 11-2-15
+Remarks
+
+Whenever data is displayed, such as in a DataGrid control, only one version of each row can be displayed. The displayed row is a DataRowView.
+A DataRowView can have one of four different version states: Default, Original, Current, and Proposed.
+After invoking BeginEdit on a DataRow, any edited value becomes the Proposed value. Until either CancelEdit or EndEdit is invoked, the row has an Original and a Proposed version. If CancelEdit is invoked, the proposed version is discarded, and the value reverts to Original. If EndEdit is invoked, the DataRowView no longer has a Proposed version; instead, the proposed value becomes the current value. Default values are available only on rows that have columns with default values defined.
+Examples
+
+The following example uses the RowVersion property to determine the state of a row in the DataRowView. (See RowFilter for another example using DataRowView.)
+C#VB
+private static void DemonstrateRowVersion()
+{
+    // Create a DataTable with one column.
+    DataTable table = new DataTable("Table");
+    DataColumn column = new DataColumn("Column");
+    table.Columns.Add(column);
+
+    // Add ten rows.
+    DataRow row;
+    for (int i = 0; i < 10; i++)
+    {
+        row = table.NewRow();
+        row["Column"] = "item " + i;
+        table.Rows.Add(row);
+    }
+
+    table.AcceptChanges();
+    // Create a DataView with the table.
+    DataView view = new DataView(table);
+
+    // Change one row's value:
+    table.Rows[1]["Column"] = "Hello";
+
+    // Add one row:
+    row = table.NewRow();
+    row["Column"] = "World";
+    table.Rows.Add(row);
+
+    // Set the RowStateFilter to display only added  
+    // and modified rows.
+    view.RowStateFilter = DataViewRowState.Added | 
+        DataViewRowState.ModifiedCurrent;
+
+    // Print those rows. Output includes "Hello" and "World".
+    PrintView(view, "ModifiedCurrent and Added");
+
+    // Set filter to display only originals of modified rows.
+    view.RowStateFilter = DataViewRowState.ModifiedOriginal;
+    PrintView(view, "ModifiedOriginal");
+
+    // Delete three rows.
+    table.Rows[1].Delete();
+    table.Rows[2].Delete();
+    table.Rows[3].Delete();
+
+    // Set the RowStateFilter to display only deleted rows.
+    view.RowStateFilter = DataViewRowState.Deleted;
+    PrintView(view, "Deleted");
+
+    // Set filter to display only current rows.
+    view.RowStateFilter = DataViewRowState.CurrentRows;
+    PrintView(view, "Current");
+
+    // Set filter to display only unchanged rows.
+    view.RowStateFilter = DataViewRowState.Unchanged;
+    PrintView(view, "Unchanged");
+
+    // Set filter to display only original rows. 
+    // Current values of unmodified rows are also returned.
+    view.RowStateFilter = DataViewRowState.OriginalRows;
+    PrintView(view, "OriginalRows");
+}
+
+private static void PrintView(DataView view, string label)
+{
+    Console.WriteLine("\n" + label);
+    for (int i = 0; i < view.Count; i++)
+    {
+        Console.WriteLine(view[i]["Column"]);
+        Console.WriteLine("DataViewRow.RowVersion: {0}", 
+            view[i].RowVersion);
+    }
+}
+
+********************************************************
+The conditional of an if statement is evaluated on every loop; your i is increasing at the same time that Rows.
+Count is decreasing. This method will always leave at least one row. Use dataGridView1.Rows.Clear() instead. Or even better, 
+clear the rows from the DataSource that the DataGridView is bound to, if any (e.g. myDataTable.Rows.Clear())
+
+**********************************************************
+Dt 14-03-15
+OLD STUFF
+
+    // private void btnStep2Boys_Click(object sender, EventArgs e)
+    // {
+    //     MakeAllDataGridInvisible();     
+  
+    //     dgData = dataGridView2; //to save data of dataGridView2 (only)
+    //  //   dataGridView1.Visible = true;  //use lbx list box
+    //  //   dataGridView1.Dock = DockStyle.Left; 
+    //     dataGridView2.Visible = true;
+    //     dataGridView2.Dock = DockStyle.None;
+    //     //listBox.DataSource = boysBindingSource; //boysBindingSource;
+    //     //listBox.DisplayMember = ds.Girls.IdCandidatePKColumn; IdCandidatePK;
+    //     listBoxBoys.Visible = true;
+
+    //// Keep Alt-I
+    //     // Temp. Keep
+    //     boysLikeBindingSource.DataSource = boysBindingSource;  //.Current;   //.List ;         
+    //     boysLikeBindingSource.DataMember = ds.Relations["BoysBoysLike"].RelationName;//ds.Tables[0]; //this.boysBindingSource;
+         
+         
+    //     //dataGridView2.DataSource = boysLikeBindingSource;  // Already define in control.
+    //     //boysLikeBindingSource.ResetCurrentItem();    //.ResetBindings();
+    //   //  boysLikeBindingSource.ResumeBinding();
+    //   // boysLikeBindingSource.ResetBindings(true);
+    //    // dataGridView2.Refresh(); //see that related records r visible.
+    //    // boysLikeBindingSource.DataMember = ds.Relations["BoysBoysLike"].RelationName;//ds.Tables[0]; //this.boysBindingSource;
+        
+
+
+    //     //this.dgData.CollapseAllDetails(); //<<<< add this line
+    //     //this.dgData.ExpandMasterRow(0);
+
+    //////Alt-II Keep?
+    ////     var MatchingChoices = from boy in ds.Boys
+    ////                           join choices in ds.BoysLike on boy.IdCandidatePK equals choices.IdCandidateFK
+    ////                               into AvailableChoices
+    ////                           select new { boy1 = boy, choices1 = AvailableChoices };
+
+    ////     this.GroupChoice = MatchingChoices.ToDictionary(x => x.boy1, y => y.choices1);
+    ////     //bsDepartments.DataSource = GroupEmployee.Keys;
+    ////     boysLikeBindingSource.DataSource  = GroupChoice.Keys; 
+
+    ////     if (dgData != null)   SaveTable();
+
+
+    // }
+
+	**************************************************************
+
+	//Dt 22-3-15 Dialog box
+	[C#]
+using System.Windows.Forms;
+using System.Drawing;
+
+public static DialogResult InputBox(string title, string promptText, ref string value)
+{
+  Form form = new Form();
+  Label label = new Label();
+  TextBox textBox = new TextBox();
+  Button buttonOk = new Button();
+  Button buttonCancel = new Button();
+
+  form.Text = title;
+  label.Text = promptText;
+  textBox.Text = value;
+
+  buttonOk.Text = "OK";
+  buttonCancel.Text = "Cancel";
+  buttonOk.DialogResult = DialogResult.OK;
+  buttonCancel.DialogResult = DialogResult.Cancel;
+
+  label.SetBounds(9, 20, 372, 13);
+  textBox.SetBounds(12, 36, 372, 20);
+  buttonOk.SetBounds(228, 72, 75, 23);
+  buttonCancel.SetBounds(309, 72, 75, 23);
+
+  label.AutoSize = true;
+  textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
+  buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+  buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+
+  form.ClientSize = new Size(396, 107);
+  form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
+  form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
+  form.FormBorderStyle = FormBorderStyle.FixedDialog;
+  form.StartPosition = FormStartPosition.CenterScreen;
+  form.MinimizeBox = false;
+  form.MaximizeBox = false;
+  form.AcceptButton = buttonOk;
+  form.CancelButton = buttonCancel;
+
+  DialogResult dialogResult = form.ShowDialog();
+  value = textBox.Text;
+  return dialogResult;
+}
+
+*********
+You need to create your own Prompt dialog. You could perhaps create a class for this.
+
+public static class Prompt
+{
+    public static string ShowDialog(string text, string caption)
+    {
+        Form prompt = new Form();
+        prompt.Width = 500;
+        prompt.Height = 150;
+        prompt.FormBorderStyle = FormBorderStyle.FixedDialog;
+        prompt.Text = caption;
+        prompt.StartPosition = FormStartPosition.CenterScreen;
+        Label textLabel = new Label() { Left = 50, Top=20, Text=text };
+        TextBox textBox = new TextBox() { Left = 50, Top=50, Width=400 };
+        Button confirmation = new Button() { Text = "Ok", Left=350, Width=100, Top=70 };
+        confirmation.Click += (sender, e) => { prompt.Close(); };
+        prompt.Controls.Add(textBox);
+        prompt.Controls.Add(confirmation);
+        prompt.Controls.Add(textLabel);
+        prompt.AcceptButton = confirmation;
+        prompt.ShowDialog();
+        return textBox.Text;
+    }
+}
+And calling it:
+
+string promptValue = Prompt.ShowDialog("Test", "123");
+
+*****************************************************************
+Old and discarded func for ref only 
+     private void btnSaveStep2BoyChoices_ClickOld(object sender, EventArgs e)
+     {
+         //dgvBoysLike.CommitEdit ( 
+         //string  strTemp = boysLikeTableAdapter.Connection.DataSource;  //.Adapter Temp  nsb
+
+         //OleDbCommand command = new OleDbCommand();
+         //OleDbConnection cn = new OleDbConnection();
+         //cn.ConnectionString = boysLikeTableAdapter.Connection.ConnectionString;
+         //command.CommandType = CommandType.Text;
+         //command.CommandText = "SELECT IdCandidateFK, IdILike FROM BoysLike";
+         //command.Connection = cn;
+         //OleDbDataAdapter boysLikeDADummy = new OleDbDataAdapter(command);
+         //boysLikeDADummy.SelectCommand = command; 
+         ////OleDbCommandBuilder myComBuilder = new OleDbCommandBuilder(myAda); sample
+         //OleDbCommandBuilder myComBuilder = new OleDbCommandBuilder(boysLikeDADummy);
+         //myComBuilder.RefreshSchema();
+         ////boysLikeDADummy
+         try
+         {
+             //dgvBoysLike.CommitEdit(DataGridViewDataErrorContexts.Commit);
+
+             DataRowView currentDataRowView = (DataRowView)dgvBoysLike.CurrentRow.DataBoundItem;
+             DataRow row1 = currentDataRowView.Row;
+
+
+             //this.dataSet1.Boys.Rows[e.RowIndex].AcceptChanges(); //commit 
+             //row1.AcceptChanges();
+             //this.dataSet1.BoysLike.AcceptChanges(); //
+             boysLikeTableAdapter.Update(this.dataSet1); //para: DataRow/s
+
+             //myComBuilder.GetDeleteCommand();
+             //myComBuilder.GetInsertCommand()
+             // myComBuilder.GetUpdateCommand();
+             //Without the OleDbCommandBuilder this line would fail
+             //adapter.Update(dataSet, tableName);
+
+             // boysLikeDADummy.Update(this.dataSet1.BoysLike);   //(row1);
+             // row1.AcceptChanges();
+             // MessageBox.Show("Boy Choices Saved! ");
+         }
+         catch  // (Exception Exc)
+         {
+             //current cell
+             //dgvGirlsLike.CurrentCell = girlsLikeBindingSource.Current ; //  GirlsLike
+             //MessageBox.Show(Exc.Message);
+             //this.boysLikeBindingSource.DataSource  
+             // dataSet1.BoysLike.b .BeginInit();
+             // dgvBoysLike.BeginEdit(true) ;     
+             //this.boysLikeTableAdapter.Update(
+
+             //DataRowView currentDataRowView = (DataRowView) dgvBoysLike.CurrentRow.DataBoundItem;
+             //DataRow row1 = currentDataRowView.Row;
+             //this.dataSet1.Boys.Rows[e.RowIndex].AcceptChanges(); //commit 
+             //row1.AcceptChanges();
+
+             boysLikeTableAdapter.Adapter.UpdateCommand = new OleDbCommand();
+             boysLikeTableAdapter.Adapter.UpdateCommand.Connection = boysLikeTableAdapter.Adapter.InsertCommand.Connection;
+             boysLikeTableAdapter.Adapter.UpdateCommand.CommandType = CommandType.Text;
+             boysLikeTableAdapter.Adapter.UpdateCommand.CommandText = "UPDATE  BoysLike SET  IdCandidateFK =IdCandidateFK , IdILike =IdILike";
+
+             //boysLikeTableAdapter.Adapter.DeleteCommand  = new OleDbCommand();
+             //boysLikeTableAdapter.Adapter.DeleteCommand.Connection = boysLikeTableAdapter.Adapter.InsertCommand.Connection;
+             //boysLikeTableAdapter.Adapter.DeleteCommand.CommandType = CommandType.Text;
+
+             //long 
+             // string   myId= row1.i  .ItemArray[0]  .ToString  ;  string idILike;
+             //string delString = "DELETE  FROM BoysLike where IdCandidateFK = " + myId + "AND IdILike = " + idILike + "";
+             // boysLikeTableAdapter.Adapter.DeleteCommand.CommandText = delString;
+             //"DELETE FROM BoysLike"; //for delete all or only Marked-deleted? All. WARNING!!!
+             // "DELETE * FROM finalResult where RollNo = " + m + "";
+             //     boysLikeTableAdapter.Update(row1); //Same err: Updates require valid update command
+
+             //   if (row1.RowState != DataRowState.Added || row1.RowState != DataRowState.Unchanged)
+             MessageBox.Show("Modification Not Allowed. \n You Should Select This Row by Clicking The Left Most Part of Row Then Press DEL.\n Now Enter Correct Value in New Row");
+
+             // Init Adapter
+             //this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
+             //global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+             //tableMapping.SourceTable = "Table";
+             //tableMapping.DataSetTable = "BoysLike";
+             //tableMapping.ColumnMappings.Add("IdCandidateFK", "IdCandidateFK");
+             //tableMapping.ColumnMappings.Add("IdILike", "IdILike");
+             //this._adapter.TableMappings.Add(tableMapping);
+             //this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
+             //this._adapter.InsertCommand.Connection = this.Connection;
+             //this._adapter.InsertCommand.CommandText = "INSERT INTO `BoysLike` (`IdCandidateFK`, `IdILike`) VALUES (?, ?)";
+             //this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+             //this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IdCandidateFK", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IdCandidateFK", global::System.Data.DataRowVersion.Current, false, null));
+             //this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IdILike", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IdILike", global::System.Data.DataRowVersion.Current, false, null));
+
+             //To mofify for BoysLike
+             //this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
+             //this._adapter.DeleteCommand.Connection = this.Connection;
+             //this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Boys` WHERE ((`IdCandidatePK` = ?) AND ((? = 1 AND `MyName` IS NULL) OR (`MyName` = ?)) AND ((? = 1 AND `MobileNum` IS NULL) OR (`MobileNum` = ?)) AND ((? = 1 AND `BoysLikeConcat` IS NULL) OR (`BoysLikeConcat` = ?)) AND ((? = 1 AND `BoysLikedByConcat` IS NULL) OR (`BoysLikedByConcat` = ?)))";
+             //this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+             //this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_IdCandidatePK", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IdCandidatePK", global::System.Data.DataRowVersion.Original, false, null));
+             //this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_MyName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MyName", global::System.Data.DataRowVersion.Original, true, null));
+             //this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_MyName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MyName", global::System.Data.DataRowVersion.Original, false, null));
+             //this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_MobileNum", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MobileNum", global::System.Data.DataRowVersion.Original, true, null));
+             //this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_MobileNum", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MobileNum", global::System.Data.DataRowVersion.Original, false, null));
+             //this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_BoysLikeConcat", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BoysLikeConcat", global::System.Data.DataRowVersion.Original, true, null));
+             //this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_BoysLikeConcat", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BoysLikeConcat", global::System.Data.DataRowVersion.Original, false, null));
+             //this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_BoysLikedByConcat", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BoysLikedByConcat", global::System.Data.DataRowVersion.Original, true, null));
+             //this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_BoysLikedByConcat", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BoysLikedByConcat", global::System.Data.DataRowVersion.Original, false, null));        
+
+             //this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
+             //this._adapter.UpdateCommand.Connection = this.Connection;
+             //this._adapter.UpdateCommand.CommandText = @"UPDATE `Boys` SET `IdCandidatePK` = ?, `MyName` = ?, `MobileNum` = ?, `BoysLikeConcat` = ?, `BoysLikedByConcat` = ? WHERE ((`IdCandidatePK` = ?) AND ((? = 1 AND `MyName` IS NULL) OR (`MyName` = ?)) AND ((? = 1 AND `MobileNum` IS NULL) OR (`MobileNum` = ?)) AND ((? = 1 AND `BoysLikeConcat` IS NULL) OR (`BoysLikeConcat` = ?)) AND ((? = 1 AND `BoysLikedByConcat` IS NULL) OR (`BoysLikedByConcat` = ?)))";
+             //this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+             //this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IdCandidatePK", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IdCandidatePK", global::System.Data.DataRowVersion.Current, false, null));
+             //this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("MyName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MyName", global::System.Data.DataRowVersion.Current, false, null));
+             //this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("MobileNum", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MobileNum", global::System.Data.DataRowVersion.Current, false, null));
+             //this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("BoysLikeConcat", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BoysLikeConcat", global::System.Data.DataRowVersion.Current, false, null));
+             //this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("BoysLikedByConcat", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BoysLikedByConcat", global::System.Data.DataRowVersion.Current, false, null));
+             //this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_IdCandidatePK", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IdCandidatePK", global::System.Data.DataRowVersion.Original, false, null));
+             //this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_MyName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MyName", global::System.Data.DataRowVersion.Original, true, null));
+             //this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_MyName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MyName", global::System.Data.DataRowVersion.Original, false, null));
+             //this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_MobileNum", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MobileNum", global::System.Data.DataRowVersion.Original, true, null));
+             //this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_MobileNum", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MobileNum", global::System.Data.DataRowVersion.Original, false, null));
+             //this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_BoysLikeConcat", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BoysLikeConcat", global::System.Data.DataRowVersion.Original, true, null));
+             //this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_BoysLikeConcat", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BoysLikeConcat", global::System.Data.DataRowVersion.Original, false, null));
+             //this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_BoysLikedByConcat", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BoysLikedByConcat", global::System.Data.DataRowVersion.Original, true, null));
+             //this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_BoysLikedByConcat", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BoysLikedByConcat", global::System.Data.DataRowVersion.Original, false, null));
+         }
+     } // old-discarded btnSaveStep2BoyChoices_Click ends 
+
+	 **********************************************************
+
+	 Dt 2-4-15 Get Executing path of app
+	 Get Application Directory [C#]
+
+Following examples show how to get application or assembly folder.
+
+Directory of windows forms application (.exe)
+Class Application in System.Window­s.Forms namespace has static property ExecutablePath. It contains path of the .exe file (that started the application) including the executable file name. To get only the folder part of the path, use static method GetDirectoryName of Path class.
+
+[C#]
+using System.IO;
+using System.Windows.Forms;
+
+string appPath = Path.GetDirectoryName(Application.ExecutablePath);
+
+Directory of any loaded assembly (.exe or .dll)
+First get reference to the assembly. You can use static methods of Assembly class. To get assembly of currently executing code use method Assembly.GetE­xecutingAssem­bly. To get assembly in which the specified class is defined use method Assembly.GetAs­sembly (with the specified class type as a paramater). The assembly must be loaded. Next get assembly file path using Assembly.CodeBase property.
+
+[C#]
+using System.IO;
+using System.Reflection;
+
+string path = Path.GetDirectoryName(
+                     Assembly.GetAssembly(typeof(MyClass)).CodeBase);
+
+
+
+ 
+See also
+Application.E­xecutablePath – MSDN – returns path of application .exe file
+Assembly.GetAs­sembly – MSDN – returns assembly for the specified class
+Path.GetDirec­toryName – MSDN – returns the dir part of the specified path
+
+Dt 30-03-17
+Want to make changes
+1. Step-4. Instead of "Girls liking" show "Girls want to meet you"
+2. Instead of SMS, try to send thru WhatsApp/Email.
+
+Build Err:
+1>C:\Program Files\MSBuild\14.0\bin\Microsoft.Common.CurrentVersion.targets(4594,5): 
+error MSB3541: Files has invalid value "ay\Help.txt*========== Clean: 0 succeeded, 1 failed, 0 skipped ==========
+Soln: Delete/Empty Folder like obj/bin/release. Problem may be due to gitignore, 
+	git sorce control addl created folder.

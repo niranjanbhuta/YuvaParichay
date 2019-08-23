@@ -1,0 +1,383 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Printing.DataGridViewPrint</name>
+    </assembly>
+    <members>
+        <member name="T:Printing.DataGridViewPrint.DataGridViewExtentions">
+            <author>Blaise Braye</author>
+            <summary>
+            usefull extentions to DataGridView components
+            </summary>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.Font(System.Windows.Forms.DataGridViewCell)">
+            <returns>affected Font to the cell</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.Font(System.Windows.Forms.DataGridViewCell,System.Single)">
+            <summary>
+            Multiply the cell font with scale
+            </summary>
+            <param name="cell"></param>
+            <param name="scale">percentage of font size</param>
+            <returns>Scaled Font</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.ForeColor(System.Windows.Forms.DataGridViewCell)">
+            <summary>
+            Get the forecolor of the cell
+            </summary>
+            <param name="cell"></param>
+            <returns>ForeColor of the cell</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.BackColor(System.Windows.Forms.DataGridViewCell)">
+            <summary>
+            Get the BackColor of the cell
+            </summary>
+            <param name="cell"></param>
+            <returns>BackColor of the cell</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.ColumnsHeaderBackColor(System.Windows.Forms.DataGridView)">
+            <summary>
+            Get the BackColor of the column headers of the gridview
+            </summary>
+            <param name="gridView"></param>
+            <returns>BackColor of the cell</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.ForeColor(System.Windows.Forms.DataGridViewRow)">
+            <summary>
+            Get the forecolor of the row
+            </summary>
+            <param name="row"></param>
+            <returns>ForeColor of the row</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.BackColor(System.Windows.Forms.DataGridViewRow)">
+            <summary>
+            Get the BackColor of the row
+            </summary>
+            <param name="row"></param>
+            <returns>BackColor of the row</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.HorizontalAlignement(System.Windows.Forms.DataGridViewCell)">
+            <summary>
+            Get text horizontal alignement in given cell
+            </summary>
+            <param name="cell"></param>
+            <returns>text horizontal alignement in given cell</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.RowHeight(System.Windows.Forms.DataGridViewRow,System.Drawing.Graphics)">
+            <summary>
+            Calculate the height of a DataGridViewRow in a drawing surface,
+            it doesn't make calculation with hidden cells
+            </summary>
+            <param name="row"></param>
+            <param name="g"></param>
+            <returns>row height</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.RowHeight(System.Windows.Forms.DataGridViewRow,System.Drawing.Graphics,System.Single)">
+            <summary>
+            Multiply row height with scale value
+            </summary>
+            <param name="row"></param>
+            <param name="g"></param>
+            <param name="scale"></param>
+            <returns>Scaled height</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.RowHeight(System.Windows.Forms.DataGridViewCell,System.Drawing.Graphics)">
+            <summary>
+            Calculate the height of a cell in a drawing surface
+            </summary>
+            <param name="cell"></param>
+            <param name="g"></param>
+            <returns>cell row height</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.RowHeight(System.Windows.Forms.DataGridViewCell,System.Drawing.Graphics,System.Single)">
+            <summary>
+            Multiply cell height with scale value
+            </summary>
+            <param name="cell"></param>
+            <param name="g"></param>
+            <param name="scale"></param>
+            <returns>Scaled cell height</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.HeaderHeight(System.Windows.Forms.DataGridView,System.Drawing.Graphics)">
+            <summary>
+            Calculate the header height of a DataGridView in a drawing surface,
+            it takes care only about visible columns
+            </summary>
+            <param name="dgv"></param>
+            <param name="g"></param>
+            <returns>DataGridView Columns Header Height</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.HeaderHeight(System.Windows.Forms.DataGridView,System.Drawing.Graphics,System.Single)">
+            <summary>
+            Multiply DataGridView Columns Header Height with scale value 
+            </summary>
+            <param name="dgv"></param>
+            <param name="g"></param>
+            <param name="scale"></param>
+            <returns>Scaled DataGridView Columns Header Height</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.Width(System.Windows.Forms.DataGridViewColumn,System.Drawing.Graphics)">
+            <summary>
+            Calculate the width of a column in a drawing surface,
+            it doesn't make calculation with hidden cells
+            </summary>
+            <param name="column"></param>
+            <param name="g"></param>
+            <returns>Column width</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.Width(System.Windows.Forms.DataGridViewColumn,System.Drawing.Graphics,System.Single)">
+            <summary>
+            Multiply column width with scale value
+            </summary>
+            <param name="column"></param>
+            <param name="g"></param>
+            <param name="scale"></param>
+            <returns>Scaled column width</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.ColumnWidth(System.Windows.Forms.DataGridViewCell,System.Drawing.Graphics)">
+            <summary>
+            Calculate the width of a DataGridViewCell in a drawing surface
+            </summary>
+            <param name="cell"></param>
+            <param name="g"></param>
+            <returns>Cell width</returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DataGridViewExtentions.ColumnWidth(System.Windows.Forms.DataGridViewCell,System.Drawing.Graphics,System.Single)">
+            <summary>
+            Multiply cell width with scale value
+            </summary>
+            <param name="cell"></param>
+            <param name="g"></param>
+            <param name="scale"></param>
+            <returns>Scaled cell width</returns>
+        </member>
+        <member name="T:Printing.DataGridViewPrint.DocumentMetrics">
+            <author>Blaise Braye</author>
+            <summary>
+            Usefull to keep the printable coordinates of a document
+            </summary>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.DocumentMetrics.FromPrintDocument(System.Drawing.Printing.PrintDocument)">
+            <summary>
+            DocumentMetrics factory, take information in given PrintDocument object
+            </summary>
+            <param name="printDocument"></param>
+            <returns>printable coordinates</returns>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.DocumentMetrics.PrintAbleWidth">
+            <summary>
+            substract the margins from the document width
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.DocumentMetrics.PrintAbleHeight">
+            <summary>
+            substract the margins from the document height
+            </summary>
+        </member>
+        <member name="T:Printing.DataGridViewPrint.GridDrawer">
+            <author>Blaise Braye</author>
+            <summary>
+            GridDraw is a DataGridView Printing tool which try to help developper to print quickly and efficiently datas from grids
+            </summary>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.GridDrawer.#ctor(System.Windows.Forms.DataGridView)">
+            <param name="dgv">GridView to manage</param>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.GridDrawer.#ctor(System.Windows.Forms.DataGridView,System.Boolean)">
+            <param name="dgv">GridView to manage</param>
+            <param name="mustCenterPartition">Do you want to center grid on sheet?</param>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.GridDrawer.#ctor(System.Windows.Forms.DataGridView,System.Boolean,System.Boolean)">
+            <param name="dgv">GridView to manage</param>
+            <param name="mustCenterPartition">Do you want to center grid on sheet?</param>
+            <param name="mustFitColumnsToPage">Do you want to ensure that grid won't be larger than printed sheet</param>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.GridDrawer.Initialize(System.Drawing.Graphics,Printing.DataGridViewPrint.DocumentMetrics)">
+            <summary>
+            Make first calculations to know exactly what we can print on each sheet
+            </summary>
+            <param name="g"></param>
+            <param name="metrics"></param>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.GridDrawer.Partitions">
+            <summary>
+            Get each partitions to print, take care of the MustPrintLevelByLevel property value
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.GridDrawer.PartitionsByLevel(System.Int32)">
+            <summary>
+            Get partitions of one printable level
+            </summary>
+            <param name="indexLevel">level from which user needs partitions</param>
+            <returns></returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.GridDrawer.PartitionsByColumn(System.Int32)">
+            <summary>
+            Get [partitionLevel]th partitions of each levels
+            </summary>
+            <param name="partitionLevel">[partitionLevel]th partitions of each levels</param>
+            <returns></returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.GridDrawer.DrawSheet(System.Drawing.Graphics,Printing.DataGridViewPrint.Partition)">
+            <summary>
+            Print a sheet containing the given partition
+            </summary>
+            <param name="g"></param>
+            <param name="partition"></param>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.GridDrawer.DrawColumnHeaders(System.Drawing.Graphics,Printing.DataGridViewPrint.Partition)">
+            <summary>
+            Draw Grid column headers from partition
+            </summary>
+            <param name="g"></param>
+            <param name="partition">Partition to print</param>
+            <returns></returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.GridDrawer.DrawRows(System.Drawing.Graphics,Printing.DataGridViewPrint.Partition,System.Single)">
+            <summary>
+            Draw Grid rows from given partition
+            </summary>
+            <param name="g"></param>
+            <param name="partition">Partition to print</param>
+            <param name="currentY">Starting Y coordinate</param>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.GridDrawer.GridView">
+            <summary>
+            This is the grid that the Drawer will print
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.GridDrawer.IsInitialized">
+            <summary>
+            used by Drawer to know if it has been initialized
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.GridDrawer.MustCenterPartition">
+            <summary>
+            Define if you want to center grid on sheet?
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.GridDrawer.MustFitColumnsToPage">
+            <summary>
+            Define if you want to ensure that grid won't be larger than printed sheet
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.GridDrawer.MustPrintLevelByLevel">
+            <summary>
+            Define if you want to print level by level or not (partions columns by partitions columns)
+            Default value: true
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.GridDrawer.MustPrintSelectedColumns">
+            <summary>
+            Define if you want to print selected columns only
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.GridDrawer.MustPrintSelectedRows">
+            <summary>
+            Define if you want to print selected rows only
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.GridDrawer.TitlePrintBlock">
+            <summary>
+            Define a title block which appears on first sheet only, above the grid
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.GridDrawer.SheetFooter">
+            <summary>
+            Define a footer which appears on each sheet
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.GridDrawer.SheetHeader">
+            <summary>
+            Define a header which appears on each sheet
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.GridDrawer.LevelsCount">
+            <summary>
+            /// Once Drawer has been initialized, return the number of levels to print
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.GridDrawer.PartitionsCount">
+            <summary>
+            /// Once Drawer has been initialized, return the number of partitions of one level
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.GridDrawer.SheetsCount">
+            <summary>
+            Once Drawer has been initialized, return the number of page to print
+            </summary>
+        </member>
+        <member name="T:Printing.DataGridViewPrint.Partition">
+            <author>Blaise Braye</author>
+            <summary>
+            Represent a portion of a DataGridView which can be printed on one sheet
+            </summary>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.Partition.GetColumn(System.Int32)">
+            <summary>
+            Get the indexed column from zero to the last one to display on the partition
+            </summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.Partition.GetColumns">
+            <summary>
+            Get every visible columns of the partition
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.Partition.GetRow(System.Int32)">
+            <summary>
+            Get the indexed row from zero to the last one to display on the partition
+            </summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Printing.DataGridViewPrint.Partition.GetRows">
+            <summary>
+            Get every visible rows of the partition
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Printing.DataGridViewPrint.PartitionBounds">
+            <author>Blaise Braye</author>
+            <summary>
+            Bounds of a partition, it covers mostly included rows and columns
+            but also cordinates information about it (size,..)
+            </summary>
+        </member>
+        <member name="T:Printing.DataGridViewPrint.PrintBlock">
+            <author>Blaise Braye</author>
+            <summary>
+            GridDrawer is able to draw object inherited from this class,
+            a common use case for GridDraw is to call GetSize method first,
+            then setting a Rectangle in which the Draw method will be allowed to print.
+            It's usefull for everyone because it allows to defines some blocks to be printed
+            without modifying library core
+            </summary>
+        </member>
+        <member name="T:Printing.DataGridViewPrint.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Printing.DataGridViewPrint.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Printing.DataGridViewPrint.Tools.TitlePrintBlock">
+            <author>Blaise Braye</author>
+            <summary>
+            Reusable Sample of a title to print on first printed sheet
+            </summary>
+        </member>
+    </members>
+</doc>

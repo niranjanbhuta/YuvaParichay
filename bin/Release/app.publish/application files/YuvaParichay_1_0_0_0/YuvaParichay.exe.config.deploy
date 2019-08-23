@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<configuration>
+<configSections>
+</configSections>
+<connectionStrings>
+    <add name="YuvaParichay.Properties.Settings.nsbSqlDBConnectionString"
+        connectionString="Data Source=|DataDirectory|\nsbSqlDB.sdf;Password=bhutans;Persist Security Info=True"
+        providerName="Microsoft.SqlServerCe.Client.3.5" />
+    <add name="YuvaParichay.Properties.Settings.YuvaParichayConnectionString"
+        connectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Data\YuvaParichay.accdb"
+        providerName="System.Data.OleDb" />
+</connectionStrings>
+<startup><supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/></startup></configuration>

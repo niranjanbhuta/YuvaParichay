@@ -1,0 +1,25 @@
+Source      : C:\nsb\fb\Prg\Dropbox\YuvaParichay\nsbSqlDB.sdf
+Destination : C:\Windows\system32\RepairedDB
+Repairing - verMajor: 3, verMinor: 5, verBuild: 8080, verPoint: 0
+Time - 2014-17-11 23:05:35.476
+
+Source      : C:\nsb\fb\Prg\Dropbox\YuvaParichay\nsbSqlDB.sdf
+Destination : C:\Windows\system32\RepairedDB.sdf
+Repairing - verMajor: 3, verMinor: 5, verBuild: 8080, verPoint: 0
+Time - 2014-17-11 23:05:53.412
+
+Source      : C:\nsb\fb\Prg\Dropbox\YuvaParichay\nsbSqlDB.sdf
+Destination : C:\Windows\system32\nsbSqlDB - Copy
+Repairing - verMajor: 3, verMinor: 5, verBuild: 8080, verPoint: 0
+Time - 2014-17-11 23:07:20.456
+
+Source      : C:\nsb\fb\Prg\Dropbox\YuvaParichay\nsbSqlDB.sdf
+Destination : C:\Windows\system32\nsbSqlDB - Copy.sdf
+Repairing - verMajor: 3, verMinor: 5, verBuild: 8080, verPoint: 0
+Time - 2014-17-11 23:07:29.478
+
+Source      : C:\nsb\fb\Prg\Dropbox\YuvaParichay\nsbSqlDB.sdf
+Destination : C:\nsb\fb\Prg\Dropbox\YuvaParichay\nsbSqlDB.sdf.34BF994.tmp
+Repairing - verMajor: 3, verMinor: 5, verBuild: 8080, verPoint: 0
+Time - 2014-17-11 23:07:42.259
+

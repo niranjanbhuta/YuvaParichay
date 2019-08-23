@@ -1,0 +1,281 @@
+
+Dt 30-03-17
+Want to make changes
+1. Step-4. Instead of "Girls liking" show "Girls want to meet you"
+2. Instead of SMS, try to send thru WhatsApp/Email.
+
+Build Err:
+1>C:\Program Files\MSBuild\14.0\bin\Microsoft.Common.CurrentVersion.targets(4594,5): 
+error MSB3541: Files has invalid value "ay\Help.txt*========== Clean: 0 succeeded, 1 failed, 0 skipped ==========
+Soln: Delete/Empty Folder like obj/bin/release. Problem may be due to gitignore, 
+	git sorce control addl created folder.
+
+*************
+Dt 19-9-16  
+1/- remove date validation! OK. Solved in prev ver C14!!
+Try to make headings of data-3ntry and report, meaningful.   
+2/- If SignTool error, then open proj-prpertiies -> signing -> Uncheck the "Sign the clickOnce manifest".      
+
+
+***************
+Execution path:
+C:\Users\win7-2\AppData\Local\Apps\2.0\DP12802M.J0Y\HQ31RYQT.NQM\yuva..tion_40bbf6a83dd08248_0001.0000_9a0dbf4b27f40480
+Yuva Parichay in c#.
+(0) DB-pw=pr..ha
+(1)Big problems Solved.   
+	(a) Boys Table not shown
+	Func = Form_Load()  
+     	this.boysLikeTableAdapter.Fill(this.dataSet1.BoysLike); 
+	//This line could have saved my lot of time.
+
+	(b) Data entry was not saved.
+	//These line could have saved my lot of time.
+             currentDomain = AppDomain.CurrentDomain;
+             dataDirectory = (string)currentDomain.BaseDirectory; // +"\\Data"; //Temp for debug only 
+            currentDomain.SetData("DataDirectory", dataDirectory); //  strData ); //"\\Data");
+ 
+ 
+ Inf: Data Source=C:\YP\YuvaParichay.accdb. Not |DataDir|
+ Visual studio Ultimate With Win8 started. Dt 16-1-15
+		
+ (2) form1_load() Dt 16-2-15
+            // TODO: This line of code loads data into the 'dataSet1.Boys' table. You can move, or remove it, as needed.
+            this.boysTableAdapter.Fill(this.dataSet1.Boys);
+
+			Prob: btnStep4BoysReport_Click
+			foreach (DataRow boyRow1 in ds.Tables["Boys"].Rows). This didi not retrive data.
+			Cause: //Warning! Adaptors can directly fill data into class but may not automatically fill data into instance of class.
+            //so re-write abpve code with modification
+
+			Solved after writing following lines.
+            this.qryMatchBoyGirlTableAdapter.Fill(this.ds.qryMatchBoyGirl );
+            this.qryBoysAndBoysLikedByTableAdapter.Fill(this.ds.qryBoysAndBoysLikedBy);
+            this.girlsLikeTableAdapter.Fill(this.ds.GirlsLike);
+            this.girlsTableAdapter.Fill(this.ds.Girls);   
+            this.boysTableAdapter.Fill(this.ds.Boys);   // this.boysTableAdapter.Fill(this.dataSet1.Boys); did not work!
+ (3) Dt 16-2-15
+	Prob: btnStep4GirlsReport_Click (Though copied w.r.t Boys) gets manipulated data in DataTable (ds) but could not save 
+			in database.
+			Soln: Project properties -> setting (app.config) had 2 connection strings:
+  (a) YuvaParichay.Properties.Settings.Default.YuvaParichayConnectionString w.r.t Data Source=C:\YP\YuvaParichay.accdb (desired) 
+  (b)YuvaParichay.Properties.Settings.Default.YuvaParichayConnectionString1 w.r.t |datadir|\YuvaParichay.accdb 
+     where |datadir| refers to F:\dropbox\YuvaParichay\ which is not desired. So deleted. 
+  Also  DataSet1.Designer.cs -> namespace YuvaParichay.DataSet1TableAdapters -> GirlsTableAdeptor (class) line-5437
+   private void InitConnection() {
+            this._connection = new global::System.Data.OleDb.OleDbConnection();
+          // this._connection.ConnectionString = global::YuvaParichay.Properties.Settings.Default.YuvaParichayConnectionString1;
+			this._connection.ConnectionString = global::YuvaParichay.Properties.Settings.Default.YuvaParichayConnectionString;
+        }
+       Now OK.
+ (4) Dt 2-3-15
+	Debug: Break pts are not invoked!
+	Soln: (1) Soln-Explorer -> Configuration -> Acive soln config & all other config in table rows = 'debug'.
+		(2)Below DEBUG menu there is tool-button 'Start' On its RHS combo box should shows 'Debug'.
+		(3)Proj-properties -> debug -> select 'Debug'.
+ (5) Dt 2-3-15
+	Prob: Nothing seen in PrintPrev/Print
+	Solved: By adding line
+	 printPreviewDialog.Document = printDocument;  //nsb: V.IMP. This line could have saved my 1 week.
+          
+   private void btnPreview_Click(object sender, EventArgs e)
+     {
+          printProvider = PrintingDataGridViewProvider.Create(printDocument, dataGridView1, true, false, false,
+		   new TitlePrintBlock(){ForeColor = Color.DarkBlue,  Title = printDocument.DocumentName}, 
+		   new YuvaParichay.PrintBlocks.HeaderPrintBlock(), new YuvaParichay.PrintBlocks.FooterPrintBlock()  );
+
+         if (printDialog.ShowDialog(this) == DialogResult.OK)
+             printPreviewDialog.Document = printDocument;  //nsb: V.IMP. This line could have saved my 1 week.
+             printPreviewDialog.ShowDialog();  //printPreviewDialog.ShowDialog(this);
+     }
+
+	 (6) No prob: Just to track histry of how old prob was solved  Dt 6-3-15
+	   private void btnStep4BoysReport_Click(object sender, EventArgs e)
+     {
+       //  MessageBox.Show("Boy Report is processed! ");
+
+         //foreach (Control ctrl in this.pnlDataGrid.Controls)
+         //{
+         //    ctrl.Visible = false;
+         //}
+         // boysLikeBindingSource.DataMember = ds.Relations["BoysBoysLike"].RelationName;//ds.Tables[0]; //this.boysBindingSource;
+         // qryBoysAndBoysLikedByTableAdapter
+
+         //Bind with form.
+        // BindingSource masterBindingSource = new BindingSource();
+        ////private DataGridView detailsDataGridView = new DataGridView();
+        // BindingSource detailsBindingSource = new BindingSource();
+
+        //Help 
+            //// Bind the master data connector to the Customers table.
+            //masterBindingSource.DataSource = data;
+            //masterBindingSource.DataMember = "Customers";
+
+            //// Bind the details data connector to the master data connector,
+            //// using the DataRelation name to filter the information in the 
+            //// details table based on the current row in the master table. 
+            //detailsBindingSource.DataSource = masterBindingSource;
+            //detailsBindingSource.DataMember = "CustomersOrders";
+ // DataRow boyRow = new DataRow();
+      //  boyRow = (System.Data.DataRow) boysBindingSource.List[0];
+         //Outer-Loop w.r.t. boy-table
+// int intBCnt = boysBindingSource.Count;
+       //boysBindingSource
+
+       // boysTableAdapter.Fill(ds.Boys);
+      //   int intTmp = ds.Tables["Boys"].Rows.Count;
+         //masterBindingSource.DataSource = ds.Boys;  //data;
+         //masterBindingSource.DataMember = "BoysBoysLikedBy"; // "Customers";
+         System.Data.DataRelation relBoyLikedBy = ds.Relations["BoysBoysLikedBy"]; //.RelationName;
+        // boysTableAdapter.Fill(ds.Boys );
+
+        // DataSet1.qryBoysAndBoysLikedByDataTable qryBandBlikedBy = new ;
+        // qryBoysAndBoysLikedByTableAdapter.Fill(qryBandBlikedBy);  //(DataSet1.qryBoysAndBoysLikedByDataTable);
+
+        // DataRow boyRow1;
+         //DataRow[] childRows1 = boyRow1.GetChildRows(relBoyLikedBy);
+
+         //for (int n = 0; n < boysBindingSource.Count; n++) 
+         //{
+            // DataRow boyRow = boysBindingSource. .DataMember ["Boys"];
+            //ds.Tables[1].Rows  =  
+ //DataRow boyRow =(System.Data.DataRow) boysBindingSource.List[n];
+           //      DataRowView boyRow = boysBindingSource.List[n];
+           //  DataRow boyRow = boysBindingSource.List[n];
+            
+             //    boyRow =(System.Data.DataRow) boysBindingSource.List[n];
+        //      }
+
+         //qryBoysAndBoysLikedByTableAdapter.Fill(  ds. .Boys);
+        // foreach (DataRow boyRow1 in boysBindingSource)  //ds.Tables["Boys"].Rows) //   qryBoysAndBoysLikedByTableAdapter.)
+
+         string tmpStrHoldConcated="";
+
+         foreach (DataRow boyRow1 in ds.Tables["Boys"].Rows)
+              //   qryBoysAndBoysLikedByTableAdapter.)
+         {
+             //Find to boy-code 
+             //string  boyCode =(string ) boyRow[0]; 
+             DataRow[] childRows = boyRow1.GetChildRows(relBoyLikedBy); // childrow count was zero, now solved by
+             // adding  this.boysLikedByTableAdapter1.Fill(this.ds.BoysLikedBy ); in form_load()
+             //Inner-loop w.r.t qry
+             tmpStrHoldConcated = ""; //reset for next rec.
+             foreach (DataRow childRow in childRows) //   qryBoysAndBoysLikedByTableAdapter.)
+             {
+                 // Instead of copying "BoysLikedBy" of child row to parent with concating for each iteration, save it
+                 // in temp string and copy to table-column after this loop
+                 //boyRow1["BoysLikedByConcat"] = (string)boyRow1["BoysLikedByConcat"] + (string)childRow["BoysLikedBy"];
+
+                 tmpStrHoldConcated = tmpStrHoldConcated + ", " + (string)childRow["IdLikedBy"]; //["BoysLikedBy"];
+
+                 //Go to boy-code 
+
+                 // int choiceRowLen = boyLikedByRow.Length;
+                 //  string strTemp = boyLikedByRow.["IdCandidatePK"].ToString;
+             }
+             //Post inner-loop
+
+             boyRow1["BoysLikedByConcat"] = tmpStrHoldConcated;
+         }
+
+         boysTableAdapter.Update(this.dataSet1); // This is not saving/updsaating data
+         boysTableAdapter.Update(this.ds); //This works. V. good!
+      
+         MessageBox.Show("Boy Report Saved! ");
+     }
+
+	 (7) Dt 20-3-15 : For Securyty. From MSDN
+	 Storing sensitive information, such as a password, within the connection string can affect the security of your application. 
+	 Using Windows Authentication, also known as integrated security, is a more secure way to control access to a database. 
+	 For more information, see Protecting Connection Information (ADO.NET).
+ (8) Small data entry in (dialog box) form. The form did not recieve user attention, but at last solved.
+ formCodeRange1.ShowDialog();    //this could have saved my 1 day
+
+ (9) PW protect OleDB: Stack over flow
+ Try this:
+@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=BioDB.mdb;Jet OLEDB:Database Password=1966;"
+
+MSDN:
+OleDb Connection String Syntax
+You must specify a provider name for an OleDbConnection connection string. The following connection string connects to a Microsoft Access database using the Jet provider. Note that the UserID and Password keywords are optional if the database is unsecured (the default).
+Provider=Microsoft.Jet.OLEDB.4.0; Data Source=d:\Northwind.mdb;User ID=Admin;Password=; 
+If the Jet database is secured using user-level security, you must provide the location of the workgroup information file (.mdw). The workgroup information file is used to validate the credentials presented in the connection string.
+Provider=Microsoft.Jet.OLEDB.4.0;Data Source=d:\Northwind.mdb;Jet OLEDB:System Database=d:\NorthwindSystem.mdw;User ID=*****;Password=*****;
+****
+Hi AiZhu,
+According to MSDN, this error message returned by the Microsoft OLE DB Provider for Jet indicates one of the following:
+The Microsoft® Access database is not a secured database and the login and password specified was not Admin with no password. 
+The Access database is secured and the HKEY_LOCAL_MACHINE\Software\Microsoft\Jet\4.0\SystemDB registry key is not pointing to the correct Access workgroup file. Secured Access databases have a corresponding workgroup file, including the full path, which should be indicated by the above registry key.
+Please take the action in the link below:
+http://msdn.microsoft.com/en-us/library/aa238103(v=sql.80).aspx
+Based on this information, I think maybe the error was in your connection string, please check it with Connection String Syntax (ADO.NET).
+You might also try Michael’s suggestion here.
+Please let me know the result.
+Best Regards,
+Bob Wu [MSFT]
+
+*******************************************
+QryMatchBoyGirl/GirlBoy Dt-24-3-15. So that it can be deleted from .MDB file for security of prog.
+SELECT DISTINCT BoysLike.IdCandidateFK, BoysLike.IdILike, BoysLikedBy.IdLikedBy
+FROM BoysLike INNER JOIN BoysLikedBy ON (BoysLike.IdILike=BoysLikedBy.IdLikedBy) AND (BoysLike.IdCandidateFK=BoysLikedBy.IdCandidateFK); 
+
+SELECT DISTINCT GirlsLike.IdCandidateFK, GirlsLike.IdILike, GirlsLikedBy.IdLikedBy
+FROM GirlsLike INNER JOIN GirlsLikedBy ON (GirlsLike.IdILike=GirlsLikedBy.IdLikedBy) AND (GirlsLike.IdCandidateFK=GirlsLikedBy.IdCandidateFK);
+
+       (9) dt 24-3-15
+	   Prob: Boys only (not Girl BoysTableAdaptor's UpdateCommand = 'Null', so could not update after edit datatable.
+	   Clue:It is observed that GirlsTableAdaptor.InitAdaptor() defines for UpdateCommand (by Auto code generation) as under
+	     this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `Girls` SET `IdCandidatePK` = ?, `MyName` = ?, `MobileNum` = ?, `GirlsLikeConcat` = ?, `GirlsLikedByConcat` = ? WHERE ((`IdCandidatePK` = ?) AND ((? = 1 AND `MyName` IS NULL) OR (`MyName` = ?)) AND ((? = 1 AND `MobileNum` IS NULL) OR (`MobileNum` = ?)) AND ((? = 1 AND `GirlsLikeConcat` IS NULL) OR (`GirlsLikeConcat` = ?)) AND ((? = 1 AND `GirlsLikedByConcat` IS NULL) OR (`GirlsLikedByConcat` = ?)))";
+      But amazingly it is not done for BoysTableAdaptor. Though 'INSERTCommand is defined in both cases.
+
+	  Help from codeproj -> VB
+	  After experimenting for several hours, I have finally found the solution. Hope this solves someone else's problem:
+Hide   Copy Code
+Dim cb As New OleDb.OleDbCommandBuilder(TableAdapter)
+ - -  -
+Help from Stack OF
+You just need to use a OleDbCommandBuilder that will generate the commands for you:
+
+adp1 = new OleDbDataAdapter();
+adp1.SelectCommand = cmd1; // cmd1 is your SELECT command
+OleDbCommandBuilder cb = new OleDbCommandBuilder(adp1);
+EDIT
+
+Since you change the Select command of the OleDbDataAdapter at runtime for paging, what your need is to initialize each time you save data:
+
+private void button1_Click(object sender, EventArgs e)
+    {
+        try
+        {                
+            adp1.SelectCommand = cmd1; // cmd1 is your SELECT command
+            OleDbCommandBuilder cb = new OleDbCommandBuilder(adp1);
+            adp1.Update(dt); //here I hope you won't get error :-)
+        }
+        catch (Exception err)
+        {
+            MessageBox.Show(err.Message.ToString());
+        }
+
+    }
+shareimprove this answer
+edited Sep 2 '13 at 18:21
+
+answered Sep 2 '13 at 17:47
+
+Chris
+4,47271127
+2	 	
+Yes you are right ,now I am not getting error and data is updated,Thank you :) –  Durga Sep 3 '13 at 5:52
+__________________
+
+(10) Vary Important
+       this.boysTableAdapter.Update(ds); // This line could again have saved my 1 day. dataSet1 Did not work. Why?
+WARNING!    Ambiguity may be due to both has seperate instances of object.  We must use only one.
+
+______________________________________
+(11) dt 31-3-15
+	Veri Big Problem: Boys/GirlsLike  Tables data could only be added, not deleted or updated.
+	Cause: Due to No-Primary Key, Code was not genrated for Delete/Insert in Table-Adapter class
+	Soln: Primary Key added. Now OK.
+_____________________________________________
